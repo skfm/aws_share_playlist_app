@@ -10,8 +10,8 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        return view('users.show',[
-            'user' => $user.
+        return view('users.show', [
+            'user' => $user,
         ]);
     }
 }
