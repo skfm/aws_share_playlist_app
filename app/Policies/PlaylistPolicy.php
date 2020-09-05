@@ -16,7 +16,7 @@ class PlaylistPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class PlaylistPolicy
      * @param  \App\Playlist  $playlist
      * @return mixed
      */
-    public function view(User $user, Playlist $playlist)
+    public function view(?User $user, Playlist $playlist)
     {
         return true;
     }
