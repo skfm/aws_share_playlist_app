@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Playlist;
-use App\User;
 use App\Http\Requests\PlaylistRequest;
 use Illuminate\Http\Request;
 
