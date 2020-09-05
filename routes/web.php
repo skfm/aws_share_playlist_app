@@ -21,7 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/playlists', 'PlaylistController')->middleware('auth');
+Route::resource('/playlists', 'PlaylistController')->except(['show'])->middleware('auth');
+
+Route::resource('/playlists', 'PlaylistController')->only(['show']);
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', 'UserController@show')->name('show');

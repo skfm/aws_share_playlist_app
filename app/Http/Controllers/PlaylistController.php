@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Playlist::class, 'playlist');
+    }
+
     public function create()
     {
         return view('playlists.create');
@@ -18,5 +23,27 @@ class PlaylistController extends Controller
         $playlist->user_id = $request->user()->id;
         $playlist->save();
         return redirect()->route('home');
+    }
+
+    public function edit(Playlist $playlist)
+    {
+        return view('playlists.edit', ['playlist' => $playlist]);
+    }
+
+    public function update(PlaylistRequest $request, Playlist $playlist)
+    {
+        $playlist->fill($request->all())->save();
+        return redirect()->route('home');
+    }
+
+    public function destroy(Playlist $playlist)
+    {
+        $playlist->delete();
+        return redirect()->route('home');
+    }
+
+    public function show(Playlist $playlist)
+    {
+        return view('playlists.show', ['playlist' => $playlist]);
     }
 }
