@@ -35,5 +35,14 @@
         @include('playlists.card')
       @endforeach
     </div>
+    <div class="">
+      <a class="nav-link text-muted active"
+             href="{{ route('playlists.index', [
+              'playlists' => $playlists,
+              'name' => $user->name,
+          ]) }}">
+        プレイリスト一覧
+      </a>
+    </div>
   </div>
 @endsection
