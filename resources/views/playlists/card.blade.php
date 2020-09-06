@@ -64,6 +64,6 @@
     </div>
     <a href="{{ $playlist->url }}" class="card-text" target="_blank">
       {{ $playlist->url }}
-    </あ>
+    </a>
   </div>
 </div>
