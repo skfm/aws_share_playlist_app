@@ -11,3 +11,12 @@
   <label>YouTubeのプレイリストURL</label>
   <input type="text" name="url" class="form-control" required value="{{ $playlist->url ?? old('url') }}">
 </div>
+<div class="md-form">
+  <select name="category_id" class="form-control">
+    <option value="5">カテゴリーを選択する</option>
+    <option value="1">プログラミング</option>
+    <option value="2">お金</option>
+    <option value="3">健康</option>
+    <option value="4">美容</option>
+  </select>
+</div>

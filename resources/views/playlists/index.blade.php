@@ -23,6 +23,9 @@
             {{ $playlist->title }}
           </h3>
           <div class="card-text">
+
+          </div>
+          <div class="card-text">
             {!! nl2br(e( $playlist->description )) !!}
           </div>
           <div class="card-text">

@@ -56,6 +56,10 @@ class PlaylistController extends Controller
 
     public function show(Playlist $playlist)
     {
-        return view('playlists.show', ['playlist' => $playlist]);
+        $category_name = $playlist->category->title;
+        return view('playlists.show', [
+            'playlist' => $playlist,
+            'category_name' => $category_name,
+        ]);
     }
 }

@@ -60,6 +60,9 @@
       </a>
     </h3>
     <div class="card-text">
+      {{ $category_name ?? ''}}
+    </div>
+    <div class="card-text">
       {{ $playlist->description }}
     </div>
     <a href="{{ $playlist->url }}" class="card-text" target="_blank">

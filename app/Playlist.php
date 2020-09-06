@@ -11,10 +11,16 @@ class Playlist extends Model
         'title',
         'description',
         'url',
+        'category_id',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo('App\Category');
     }
 }
