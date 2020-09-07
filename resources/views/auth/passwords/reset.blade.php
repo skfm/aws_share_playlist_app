@@ -1,65 +1,43 @@
-@extends('layouts.app')
+@extends('app')
+
+@section('title', 'パスワード再設定')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
+        <h1 class="text-center"><a class="text-dark" href="/">memo</a></h1>
+        <div class="card mt-3">
+          <div class="card-body text-center">
+            <h2 class="h3 card-title text-center mt-2">新しいパスワードを設定</h2>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+            @include('error_card_list')
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+            <div class="card-text">
+              <form method="POST" action="{{ route('password.update') }}">
+                @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                <input type="hidden" name="email" value="{{ $email }}">
+                <input type="hidden" name="token" value="{{ $token }}">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="md-form">
+                  <label for="password">新しいパスワード</label>
+                  <input class="form-control" type="password" id="password" name="password" required>
                 </div>
+
+                <div class="md-form">
+                  <label for="password_confirmation">新しいパスワード(再入力)</label>
+                  <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" required>
+                </div>
+
+                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">送信</button>
+
+              </form>
+
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 @endsection
