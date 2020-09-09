@@ -18,9 +18,11 @@ class PlaylistController extends Controller
         $user_id = Auth::user()->id;
         $playlists = $playlist::where('user_id', $user_id)->get()->sortByDesc('created_at');
         $user_name = Auth::user()->name;
+        $user_img = Auth::user()->image_path;
         return view('playlists.index', [
             'playlists' => $playlists,
             'name' => $user_name,
+            'img' => $user_img,
         ]);
     }
 

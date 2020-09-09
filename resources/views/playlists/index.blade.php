@@ -8,7 +8,11 @@
     @foreach($playlists as $playlist)
       <div class="card mt-3">
         <div class="card-body d-flex flex-row">
-          <i class="fas fa-user-circle fa-3x mr-1"></i>
+          @if ($img)
+            <img src="{{ asset('storage/avatar/' . $img) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+          @else
+            <i class="fas fa-user-circle fa-3x"></i>
+          @endif
           <div>
             <div class="font-weight-bold">
               {{ $name }}

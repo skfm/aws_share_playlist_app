@@ -1,6 +1,10 @@
 <div class="card mt-3">
   <div class="card-body d-flex flex-row">
-    <i class="fas fa-user-circle fa-3x mr-1"></i>
+    @if ($user->image_path)
+      <img src="{{ asset('storage/avatar/' . $user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+    @else
+      <i class="fas fa-user-circle fa-3x"></i>
+    @endif
     <div>
       <div class="font-weight-bold">{{ $playlist->user->name }}</div>
       <div class="font-weight-lighter">{{ $playlist->created_at->format('Y/m/d H:i') }}</div>

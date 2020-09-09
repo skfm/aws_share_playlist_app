@@ -12,8 +12,9 @@
   <input type="text" name="url" class="form-control" required value="{{ $playlist->url ?? old('url') }}">
 </div>
 <div class="md-form">
+  <label>カテゴリー</label>
   <select name="category_id" class="form-control">
-    <option value="5">カテゴリーを選択する</option>
+    <option value="">選択肢</option>
     <option value="1">プログラミング</option>
     <option value="2">お金</option>
     <option value="3">健康</option>
