@@ -64,7 +64,7 @@
       </a>
     </h3>
     <div class="card-text">
-      {{ $category_name ?? ''}}
+      {{ $playlist->category->title ?? ''}}
     </div>
     <div class="card-text">
       {{ $playlist->description }}
