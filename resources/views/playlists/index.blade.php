@@ -100,5 +100,6 @@
         </div>
       </div>
     @endforeach
+    {{ $playlists->links() }}
   </div>
 @endsection

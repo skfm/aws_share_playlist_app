@@ -17,7 +17,7 @@ class PlaylistController extends Controller
     public function index(Playlist $playlist)
     {
         $user_id = Auth::user()->id;
-        $playlists = $playlist::where('user_id', $user_id)->get()->sortByDesc('created_at');
+        $playlists = $playlist::where('user_id', $user_id)->latest()->paginate(5);
 
         $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
