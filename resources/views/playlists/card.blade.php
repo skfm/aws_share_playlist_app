@@ -1,7 +1,7 @@
 <div class="card mt-3">
   <div class="card-body d-flex flex-row">
-    @if ($user->image_path)
-      <img src="{{ asset('storage/avatar/' . $user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+    @if ($playlist->user->image_path)
+      <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
     @else
       <i class="fas fa-user-circle fa-3x"></i>
     @endif
@@ -77,8 +77,8 @@
       <div class="card-body pt-0 pb-4 pl-3">
         <div class="card-text line-height">
     @endif
-          <a href="" class="border p-1 mr-1 mt-1 text-muted">
-            {{ $tag->name }}
+          <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 mr-1 mt-1 text-muted">
+            {{ $tag->hashtag }}
           </a>
     @if($loop->last)
         </div>

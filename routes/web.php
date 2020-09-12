@@ -32,3 +32,5 @@ Route::prefix('users')->name('users.')->group(function () {
 
     Route::patch('/{name}', 'UserController@update')->name('update');
 });
+
+Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
