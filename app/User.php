@@ -6,6 +6,7 @@ use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function playlists(): HasMany
     {
         return $this->hasMany('App\Playlist');
+    }
+
+    public function stocks(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Playlist', 'stocks')->withTimestamps();
     }
 }

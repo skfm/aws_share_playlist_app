@@ -102,4 +102,25 @@ class PlaylistController extends Controller
             'category_name' => $category_name,
         ]);
     }
+
+    public function stock(Request $request, Playlist $playlist)
+    {
+        $playlist->stocks()->detach($request->user()->id);
+        $playlist->stocks()->attach($request->user()->id);
+
+        return [
+            'id' => $playlist->id,
+            'countStocks' => $playlist->count_stocks,
+        ];
+    }
+
+    public function deleteStock(Request $request, Playlist $playlist)
+    {
+        $playlist->stocks()->detach($request->user()->id);
+
+        return [
+            'id' => $playlist->id,
+            'countStocks' => $playlist->count_stocks,
+        ];
+    }
 }

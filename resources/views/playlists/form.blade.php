@@ -8,7 +8,7 @@
   :initial-tags='@json($tagNames ?? [])'
   :autocomplete-items='@json($allTagNames ?? [])'
   >
-  </-tags-input>
+  </playlist-tags-input>
 </div>
 <div class="form-group">
   <label></label>

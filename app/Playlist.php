@@ -29,4 +29,21 @@ class Playlist extends Model
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
+
+    public function stocks(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'stocks')->withTimestamps();
+    }
+
+    public function isStockedBy(?User $user): bool
+    {
+        return $user
+            ? (bool)$this->stocks->where('id', $user->id)->count()
+            : false;
+    }
+
+    public function getCountStocksAttribute(): int
+    {
+        return $this->stocks->count();
+    }
 }
