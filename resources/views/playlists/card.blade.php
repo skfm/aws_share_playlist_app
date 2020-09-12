@@ -63,9 +63,9 @@
         {{ $playlist->title }}
       </a>
     </h3>
-    <div class="card-text">
+    <a href="{{ route('categories.show', ['title' => $playlist->category->title]) }}" class="card-title">
       {{ $playlist->category->title ?? ''}}
-    </div>
+    <a/>
     <div class="card-text">
       {{ $playlist->description }}
     </div>
