@@ -29,7 +29,13 @@ class PlaylistController extends Controller
 
     public function create()
     {
-        return view('playlists.create');
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('playlists.create', [
+            'allTagNames' => $allTagNames,
+        ]);
     }
 
     public function store(PlaylistRequest $request, Playlist $playlist)
@@ -52,9 +58,14 @@ class PlaylistController extends Controller
             return ['text' => $tag->name];
         });
 
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
         return view('playlists.edit',[
             'playlist' => $playlist,
             'tagNames' => $tagNames,
+            'allTagNames' => $allTagNames,
         ]);
     }
 

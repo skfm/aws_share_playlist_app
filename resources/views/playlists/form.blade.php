@@ -6,6 +6,7 @@
 <div class="form-group">
   <playlist-tags-input
   :initial-tags='@json($tagNames ?? [])'
+  :autocomplete-items='@json($allTagNames ?? [])'
   >
   </-tags-input>
 </div>
