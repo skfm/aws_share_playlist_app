@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Playlist;
+use App\Tag;
 use App\Http\Requests\PlaylistRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,17 +37,37 @@ class PlaylistController extends Controller
         $playlist->fill($request->all());
         $playlist->user_id = $request->user()->id;
         $playlist->save();
+
+        $request->tags->each(function ($tagName) use ($playlist) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $playlist->tags()->attach($tag);
+        });
+
         return redirect()->route('playlists.index');
     }
 
     public function edit(Playlist $playlist)
     {
-        return view('playlists.edit', ['playlist' => $playlist]);
+        $tagNames = $playlist->tags->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('playlists.edit',[
+            'playlist' => $playlist,
+            'tagNames' => $tagNames,
+        ]);
     }
 
     public function update(PlaylistRequest $request, Playlist $playlist)
     {
         $playlist->fill($request->all())->save();
+
+        $playlist->tags()->detach();
+        $request->tags->each(function ($tagName) use ($playlist) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $playlist->tags()->attach($tag);
+        });
+
         return redirect()->route('playlists.index');
     }
 

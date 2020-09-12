@@ -4,6 +4,12 @@
   <input type="text" name="title" class="form-control" required value="{{ $playlist->title ?? old('title') }}">
 </div>
 <div class="form-group">
+  <playlist-tags-input
+  :initial-tags='@json($tagNames ?? [])'
+  >
+  </-tags-input>
+</div>
+<div class="form-group">
   <label></label>
   <textarea name="description" required class="form-control" rows="16" placeholder="本文">{{ $playlist->description ?? old('description') }}</textarea>
 </div>

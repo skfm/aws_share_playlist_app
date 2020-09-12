@@ -26,6 +26,7 @@ class PlaylistRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'description' => 'required|max:1000',
+            'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
 
@@ -35,6 +36,16 @@ class PlaylistRequest extends FormRequest
             'title' => 'プレイリストタイトル',
             'description' => 'プレイリストの説明',
             'url' => 'プレイリストURL',
+            'tags' => 'タグ',
         ];
+    }
+
+    public function passedValidation()
+    {
+        $this->tags = collect(json_decode($this->tags))
+            ->slice(0, 5)
+            ->map(function ($requestTag) {
+                return $requestTag->text;
+            });
     }
 }
