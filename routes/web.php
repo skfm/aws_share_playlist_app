@@ -48,6 +48,8 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}/edit', 'UserController@edit')->name('edit');
 
     Route::patch('/{name}', 'UserController@update')->name('update');
+
+    Route::delete('/{name}', 'UserController@destroy')->name('destroy');
 });
 
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');

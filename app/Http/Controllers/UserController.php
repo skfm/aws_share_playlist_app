@@ -5,6 +5,7 @@ use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -48,6 +49,15 @@ class UserController extends Controller
             'user' => $user,
             'playlists' => $playlists,
         ]);
+    }
+
+    public function destroy()
+    {
+        $user = Auth::user();
+        Auth::logout();
+        $user->playlists()->delete();
+        $user->delete();
+        return redirect("/");
     }
 
     public function stocks(string $name)
