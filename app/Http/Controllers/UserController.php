@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        $playlists = $user->stocks->sortByDesc('created_at');
+        $playlists = $user->stocks->sortByDesc('created_at')->take(3);
 
         return view('users.stocks', [
             'user' => $user,

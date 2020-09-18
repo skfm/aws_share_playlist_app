@@ -35,6 +35,8 @@ Route::resource('/playlists', 'PlaylistController')->except(['show'])->middlewar
 
 Route::resource('/playlists', 'PlaylistController')->only(['show']);
 
+Route::resource('/stockfolders', 'StockFolderController')->middleware('auth');
+
 Route::prefix('playlists')->name('playlists.')->group(function () {
     Route::put('/{playlist}/stock', 'PlaylistController@stock')->name('stock')->middleware('auth');
     Route::delete('/{playlist}/stock', 'PlaylistController@deleteStock')->name('deleteStock')->middleware('auth');
