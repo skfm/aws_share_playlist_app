@@ -11,7 +11,8 @@ class StockFolder extends Model
     protected $fillable = [
         'name',
     ];
-    public function stock()
+
+    public function stocks(): HasMany
     {
         return $this->hasMany('App\Stock');
     }

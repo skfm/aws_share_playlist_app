@@ -71,4 +71,19 @@ class UserController extends Controller
             'playlists' => $playlists,
         ]);
     }
+
+    public function allstocks(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        $playlists = $user->stocks->sortByDesc('created_at');
+
+        $stock_folders = $user->stock_folders->all();
+
+        return view('users.allstocks', [
+            'user' => $user,
+            'playlists' => $playlists,
+            'stock_folders' => $stock_folders,
+        ]);
+    }
 }

@@ -14,8 +14,8 @@ class UpdateStocksTable extends Migration
     public function up()
     {
         Schema::table('stocks', function (Blueprint $table) {
-            $table->bigInteger('stock_id')->unsigned()->nullable();
-            $table->foreign('stock_id')->references('id')->on('stock_folders');
+            $table->bigInteger('stock_folder_id')->unsigned()->nullable();
+            $table->foreign('stock_folder_id')->references('id')->on('stock_folders');
         });
     }
 

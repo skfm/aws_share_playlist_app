@@ -35,6 +35,11 @@ class Playlist extends Model
         return $this->belongsToMany('App\User', 'stocks')->withTimestamps();
     }
 
+    public function stock(): BelongsTo
+    {
+        return $this->belongsTo('App\Stock');
+    }
+
     public function isStockedBy(?User $user): bool
     {
         return $user

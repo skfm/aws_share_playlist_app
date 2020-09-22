@@ -2,27 +2,57 @@
 
 namespace App\Http\Controllers;
 use App\StockFolder;
+use App\Stock;
 use App\Http\Requests\StockFolderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class StockFolderController extends Controller
 {
-    public function index(StockFolder $stock_folder)
+    public function index(StockFolder $stockFolder)
     {
+
         $user = Auth::user();
-
-        $playlists = $user->stocks->sortByDesc('created_at');
-
         $user_id = Auth::user()->id;
 
-        $stock_folder_names = $stock_folder::where('user_id', $user_id)->pluck('name');
+        $stock_folders = $stockFolder::where('user_id', $user_id)->get();
 
         return view('stockfolders.index', [
+            'stock_folders' => $stock_folders,
             'user' => $user,
-            'playlists' => $playlists,
-            'stock_folder_names' => $stock_folder_names,
         ]);
+    }
+
+    public function show(StockFolder $stockfolder)
+    {
+        $user = Auth::user();
+        $playlist_ids = $stockfolder->stocks->pluck('playlist_id')->all();
+        $playlists = $user->stocks->whereIn('id', $playlist_ids)->all();
+
+        return view('stockfolders.show', [
+            'playlists' => $playlists,
+            '$stockfolder' => $stockfolder,
+        ]);
+    }
+
+    public function edit(StockFolder $stockfolder)
+    {
+        return view('stockfolders.edit',[
+            'stockfolder' => $stockfolder,
+        ]);
+    }
+
+    public function update(StockFolderRequest $request, StockFolder $stockfolder)
+    {
+        $stockfolder->fill($request->all())->save();
+
+        return redirect()->route('stockfolders.index');
+    }
+
+    public function destroy(StockFolder $stockfolder)
+    {
+        $stockfolder->delete();
+        return redirect()->route('stockfolders.index');
     }
 
     public function create()
@@ -39,12 +69,16 @@ class StockFolderController extends Controller
         $user = Auth::user();
         $user_id = Auth::user()->id;
 
-        $stock_folder_names = $stock_folder::where('user_id', $user_id)->pluck('name');
+        $playlists = $user->stocks->sortByDesc('created_at');
 
-        return view('stockfolders.index', [
+        $stock_folders = $stock_folder::where('user_id', $user_id)->all;
+
+        return view('users.allstocks', [
             'user' => $user,
             'playlists' => $playlists,
-            '$stock_folder_names' => $stock_folder_names,
+            'stock_folders' => $stock_folders,
         ]);
     }
+
+
 }

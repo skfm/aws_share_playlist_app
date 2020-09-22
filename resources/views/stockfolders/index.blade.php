@@ -1,20 +1,13 @@
 @extends('app')
 
-@section('title', $user->name . 'のストックした記事')
+@section('title', $user->name . 'のフォルダ一覧')
 
 @section('content')
   @include('nav')
   <div class="container">
-    @foreach($playlists as $playlist)
-      @include('playlists.card')
+    @foreach($stock_folders as $stock_folder)
+      @include('stockfolders.card')
     @endforeach
-  </div>
-  <div>
-  @foreach($stock_folder_names as $stock_folder_name)
-    <a href="">
-      {{ $stock_folder_name }}
-    </a>
-  @endforeach
   </div>
   <a class="nav-link text-muted active"
              href="{{ route('stockfolders.create') }}">

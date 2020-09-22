@@ -56,8 +56,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Playlist', 'stocks')->withTimestamps();
     }
 
-    public function stock_folders()
+    public function stock_folders(): HasMany
     {
-        return $this->belongsTo('App\StockFolder');
+        return $this->hasMany('App\StockFolder');
     }
 }

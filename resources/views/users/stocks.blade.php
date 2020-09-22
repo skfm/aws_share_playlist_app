@@ -12,7 +12,10 @@
     @endforeach
   </div>
   <a class="nav-link text-muted active"
-          href="{{ route('stockfolders.index') }}">
-    ストック一覧
-  </a>
+             href="{{ route('users.allstocks', [
+              'playlists' => $playlists,
+              'name' => $user->name,
+          ]) }}">
+        ストック一覧
+      </a>
 @endsection

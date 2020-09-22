@@ -37,6 +37,8 @@ Route::resource('/playlists', 'PlaylistController')->only(['show']);
 
 Route::resource('/stockfolders', 'StockFolderController')->middleware('auth');
 
+Route::resource('/stocks', 'StockController')->except(['index','show','delete'])->middleware('auth');
+
 Route::prefix('playlists')->name('playlists.')->group(function () {
     Route::put('/{playlist}/stock', 'PlaylistController@stock')->name('stock')->middleware('auth');
     Route::delete('/{playlist}/stock', 'PlaylistController@deleteStock')->name('deleteStock')->middleware('auth');
@@ -46,6 +48,8 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', 'UserController@show')->name('show');
 
     Route::get('/{name}/stocks', 'UserController@stocks')->name('stocks');
+
+    Route::get('/{name}/allstocks', 'UserController@allstocks')->name('allstocks');
 
     Route::get('/{name}/edit', 'UserController@edit')->name('edit');
 
