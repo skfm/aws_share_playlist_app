@@ -71,7 +71,7 @@ class StockFolderController extends Controller
 
         $playlists = $user->stocks->sortByDesc('created_at');
 
-        $stock_folders = $stock_folder::where('user_id', $user_id)->all;
+        $stock_folders = $stock_folder::where('user_id', $user_id)->get();
 
         return view('users.allstocks', [
             'user' => $user,
