@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Tag;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -84,6 +85,24 @@ class UserController extends Controller
             'user' => $user,
             'playlists' => $playlists,
             'stock_folders' => $stock_folders,
+        ]);
+    }
+
+    public function allplaylists(string $name)
+    {
+
+        $user = User::where('name', $name)->first();
+
+        $playlists = $user->playlists()->paginate(10);
+
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('users.allplaylists', [
+            'playlists' => $playlists,
+            'allTagNames' => $allTagNames,
+            'user' => $user,
         ]);
     }
 }

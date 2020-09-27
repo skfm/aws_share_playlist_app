@@ -14,25 +14,6 @@ class PlaylistController extends Controller
         $this->authorizeResource(Playlist::class, 'playlist');
     }
 
-    public function index(Playlist $playlist)
-    {
-        $user_id = Auth::user()->id;
-        $playlists = $playlist::where('user_id', $user_id)->latest()->paginate(5);
-
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
-
-        $user_name = Auth::user()->name;
-        $user_img = Auth::user()->image_path;
-        return view('playlists.index', [
-            'playlists' => $playlists,
-            'name' => $user_name,
-            'img' => $user_img,
-            'allTagNames' => $allTagNames,
-        ]);
-    }
-
     public function create()
     {
         $allTagNames = Tag::all()->map(function ($tag) {

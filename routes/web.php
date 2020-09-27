@@ -41,6 +41,7 @@ Route::resource('/stocks', 'StockController')->except(['index','show','delete'])
 
 Route::prefix('playlists')->name('playlists.')->group(function () {
     Route::put('/{playlist}/stock', 'PlaylistController@stock')->name('stock')->middleware('auth');
+
     Route::delete('/{playlist}/stock', 'PlaylistController@deleteStock')->name('deleteStock')->middleware('auth');
 });
 
@@ -56,6 +57,8 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::patch('/{name}', 'UserController@update')->name('update');
 
     Route::delete('/{name}', 'UserController@destroy')->name('destroy');
+
+    Route::get('/{name}/llplaylists', 'UserController@allplaylists')->name('allplaylists');
 });
 
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');

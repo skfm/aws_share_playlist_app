@@ -19,8 +19,7 @@
       @endforeach
     <div class="">
       <a class="nav-link text-muted active"
-             href="{{ route('playlists.index', [
-              'playlists' => $playlists,
+             href="{{ route('users.allplaylists', [
               'name' => $user->name,
           ]) }}">
         プレイリスト一覧
