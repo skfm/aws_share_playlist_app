@@ -14,6 +14,20 @@ class PlaylistController extends Controller
         $this->authorizeResource(Playlist::class, 'playlist');
     }
 
+    public function index()
+    {
+        $playlists = playlist::paginate(10);
+
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('playlists.index', [
+            'playlists' => $playlists,
+            'allTagNames' => $allTagNames,
+        ]);
+    }
+
     public function create()
     {
         $allTagNames = Tag::all()->map(function ($tag) {

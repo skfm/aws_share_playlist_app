@@ -4,18 +4,26 @@
 
 @section('content')
   @include('nav')
+  <div class="col-sm-4" style="padding:20px 0; padding-left:0px;">
+    <form class="form-inline" action="{{url('/playlist')}}">
+      <div class="form-group">
+        <input type="text" name="keyword" class="form-control" placeholder="キーワードを入力してください">
+      </div>
+      <input type="submit" value="検索" class="btn btn-info">
+    </form>
+  </div>
   <div class="container">
     @foreach($playlists as $playlist)
       <div class="card mt-3">
         <div class="card-body d-flex flex-row">
-          @if ($img)
-            <img src="{{ asset('storage/avatar/' . $img) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+          @if ($playlist->user->image_path)
+            <img src="{{ asset('storage/avatar/' .$playlist->user->image_path ) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
           @else
             <i class="fas fa-user-circle fa-3x"></i>
           @endif
           <div>
             <div class="font-weight-bold">
-              {{ $name }}
+              {{ $playlist->user->name }}
             </div>
             <div class="font-weight-lighter">
               {{ $playlist->created_at->format('Y/m/d H:i') }}

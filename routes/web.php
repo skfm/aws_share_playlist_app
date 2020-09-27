@@ -31,9 +31,9 @@ Route::prefix('register')->name('register.')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/playlists', 'PlaylistController')->except(['show'])->middleware('auth');
+Route::resource('/playlists', 'PlaylistController')->except(['show', 'index'])->middleware('auth');
 
-Route::resource('/playlists', 'PlaylistController')->only(['show']);
+Route::resource('/playlists', 'PlaylistController')->only(['show', 'index']);
 
 Route::resource('/stockfolders', 'StockFolderController')->middleware('auth');
 
