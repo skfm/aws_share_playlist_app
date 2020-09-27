@@ -31,6 +31,16 @@ Route::prefix('register')->name('register.')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('playlists')->name('playlists.')->group(function () {
+    Route::put('/{playlist}/stock', 'PlaylistController@stock')->name('stock')->middleware('auth');
+
+    Route::delete('/{playlist}/stock', 'PlaylistController@deleteStock')->name('deleteStock')->middleware('auth');
+
+    Route::get('/serch/title', 'PlaylistController@serchTitle')->name('search_title');
+
+    Route::get('/serch/tag', 'PlaylistController@serchTag')->name('serach_tag');
+});
+
 Route::resource('/playlists', 'PlaylistController')->except(['show', 'index'])->middleware('auth');
 
 Route::resource('/playlists', 'PlaylistController')->only(['show', 'index']);
@@ -38,12 +48,6 @@ Route::resource('/playlists', 'PlaylistController')->only(['show', 'index']);
 Route::resource('/stockfolders', 'StockFolderController')->middleware('auth');
 
 Route::resource('/stocks', 'StockController')->except(['index','show','delete'])->middleware('auth');
-
-Route::prefix('playlists')->name('playlists.')->group(function () {
-    Route::put('/{playlist}/stock', 'PlaylistController@stock')->name('stock')->middleware('auth');
-
-    Route::delete('/{playlist}/stock', 'PlaylistController@deleteStock')->name('deleteStock')->middleware('auth');
-});
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{name}', 'UserController@show')->name('show');

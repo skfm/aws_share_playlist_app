@@ -4,21 +4,12 @@
 
 @section('content')
   @include('nav')
-  <form action="{{ url('/playlists/serch/title')}}" method="post">
+  <form action="{{ url('/serch/title')}}" method="post">
   {{ csrf_field()}}
   {{method_field('get')}}
   <div class="form-group">
     <label>名前</label>
-    <input type="text" class="form-control col-md-5" placeholder="タイトルで検索" name="keyword">
-  </div>
-  <button type="submit" class="btn btn-primary col-md-5">検索</button>
-  </form>
-  <form action="{{ url('/playlists/serch/tag')}}" method="post">
-  {{ csrf_field()}}
-  {{method_field('get')}}
-  <div class="form-group">
-    <label>名前</label>
-    <input type="text" class="form-control col-md-5" placeholder="タグで検索" name="keyword">
+    <input type="text" class="form-control col-md-5" placeholder="タイトルで検索" name="keyword" value="{{ $keyword }}">
   </div>
   <button type="submit" class="btn btn-primary col-md-5">検索</button>
   </form>

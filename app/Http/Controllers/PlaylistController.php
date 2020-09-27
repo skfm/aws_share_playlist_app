@@ -118,4 +118,48 @@ class PlaylistController extends Controller
             'countStocks' => $playlist->count_stocks,
         ];
     }
+
+    public function serchTitle(Request $request)
+    {
+        $keyword = $request->keyword;
+
+        if(!empty($keyword)) {
+            $query = playlist::query();
+            if(!empty($keyword))
+            {
+                $query = $query->where('title','like', "%$keyword%");
+            }
+
+            $playlists = $query->orderBy('created_at','desc')->paginate(10);
+
+            $allTagNames = Tag::all()->map(function ($tag) {
+                return ['text' => $tag->name];
+            });
+
+            return view('playlists.serch.title', [
+                'playlists' => $playlists,
+                'allTagNames' => $allTagNames,
+                'keyword' => $keyword,
+            ]);
+          }
+    }
+
+    public function serchTag(Request $request)
+    {
+        $keyword = $request->keyword;
+
+        $playlists = playlist::whereHas('tags', function($query) use ($keyword) {
+            $query->where('tags.name','like', "%$keyword%");
+        })->paginate(10);
+
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('playlists.serch.title', [
+            'playlists' => $playlists,
+            'allTagNames' => $allTagNames,
+            'keyword' => $keyword,
+        ]);
+    }
 }
