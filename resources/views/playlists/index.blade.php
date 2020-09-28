@@ -22,6 +22,35 @@
   </div>
   <button type="submit" class="btn btn-primary col-md-5">検索</button>
   </form>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <form action="{{ url('/playlists')}}">
+    <select name="sort">
+      <option value="new">新しい順</option>
+      <option value="old">古い順</option>
+      <option value="allsotck">ストックが多い順</option>
+    </select>
+    <button type="submit" class="btn btn-primary col-md-5">並び替え</button>
+    </form>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <ul>
+      <li>
+        <a href="{{ route('categories.show', ['title' => 'プログラミング']) }}" class="card-title">
+          プログラミング
+        </a>
+        <a href="{{ route('categories.show', ['title' => 'お金']) }}" class="card-title">
+          お金
+        </a>
+        <a href="{{ route('categories.show', ['title' => '美容']) }}" class="card-title">
+          美容
+        </a>
+        <a href="{{ route('categories.show', ['title' => '健康']) }}" class="card-title">
+          健康
+        </a>
+      </li>
+    </ul>
+  </div>
+
   <div class="container">
     @foreach($playlists as $playlist)
       <div class="card mt-3">

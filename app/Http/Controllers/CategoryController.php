@@ -7,10 +7,28 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function show(string $title)
+    public function show(Request $request,string $title)
     {
         $category = Category::where('title', $title)->first();
 
-        return view('categories.show', ['category' => $category]);
-    }
+        $keyword = $request->input('sort');
+
+        if ($keyword === "new")
+        {
+            $playlists = $category->playlists()->orderBy('created_at', 'desc')->paginate(10);
+        }
+        elseif ($keyword === "old")
+        {
+            $playlists = $category->playlists()->orderBy('created_at', 'asc')->paginate(10);
+        }
+        else
+        {
+            $playlists = $category->playlists()->orderBy('created_at', 'desc')->paginate(10);
+        }
+
+        return view('categories.show', [
+            'category' => $category,
+            'playlists' => $playlists,
+        ]);
+        }
 }

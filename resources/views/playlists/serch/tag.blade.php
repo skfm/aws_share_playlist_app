@@ -4,12 +4,17 @@
 
 @section('content')
   @include('nav')
-  <form action="{{ url('/serch/tag')}}" method="post">
+  <form action="{{ url('/playlists/serch/tag')}}" method="post">
   {{ csrf_field()}}
   {{method_field('get')}}
   <div class="form-group">
     <label>名前</label>
     <input type="text" {{ $keyword }} class="form-control col-md-5" placeholder="タグで検索" name="keyword">
+    <select name="sort">
+      <option value="new">新しい順</option>
+      <option value="old">古い順</option>
+      <option value="allsotck">ストックが多い順</option>
+    </select>
   </div>
   <button type="submit" class="btn btn-primary col-md-5">検索</button>
   </form>

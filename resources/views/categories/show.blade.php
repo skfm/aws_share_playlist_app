@@ -4,6 +4,15 @@
 
 @section('content')
   @include('nav')
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <form action="{{ url("/categories/$category->title")}}">
+    <select name="sort">
+      <option value="new">新しい順</option>
+      <option value="old">古い順</option>
+    </select>
+    <button type="submit" class="btn btn-primary col-md-5">並び替え</button>
+    </form>
+  </div>
   <div class="container">
     <div class="card mt-3">
       <div class="card-body">
@@ -13,7 +22,7 @@
         </div>
       </div>
     </div>
-    @foreach($category->playlists as $playlist)
+    @foreach($playlists as $playlist)
       @include('playlists.card')
     @endforeach
   </div>
