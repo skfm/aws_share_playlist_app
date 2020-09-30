@@ -9,6 +9,7 @@
     <select name="sort">
       <option value="new">新しい順</option>
       <option value="old">古い順</option>
+      <option value="allsotck">ストックが多い順</option>
     </select>
     <button type="submit" class="btn btn-primary col-md-5">並び替え</button>
     </form>
