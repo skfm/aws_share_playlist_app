@@ -58,7 +58,7 @@
 
     @if(isset( $stock_folders ))
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="{{ route("stocks.edit", ['stock' => $playlist]) }}">
+      <a class="dropdown-item" href="{{ route("stocks.edit", ['stock' => $stock_ids[$i][0]]) }}">
         <i class="fas fa-pen mr-1"></i>ストックのフォルダ分けをする
       </a>
     @endif

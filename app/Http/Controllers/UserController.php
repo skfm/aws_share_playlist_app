@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Tag;
 use App\Http\Requests\UserRequest;
+use App\Playlist;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +78,18 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
+        $user_id = $user->id;
+
         $playlists = $user->stocks->sortByDesc('created_at');
+
+        $stock_ids = collect([]);
+
+        foreach ($playlists as $playlist) {
+            $stock_id = $playlist->stocks_id->where('user_id', $user_id)->pluck('id');
+            $stock_ids->push($stock_id);
+        }
+
+        // dd($stock_ids);
 
         $stock_folders = $user->stock_folders->all();
 
@@ -85,6 +97,7 @@ class UserController extends Controller
             'user' => $user,
             'playlists' => $playlists,
             'stock_folders' => $stock_folders,
+            'stock_ids' => $stock_ids,
         ]);
     }
 

@@ -5,8 +5,10 @@
 @section('content')
   @include('nav')
   <div class="container">
+    <?php $i = 0; ?>
     @foreach($playlists as $playlist)
         @include('playlists.card')
+        <?php $i =  ++$i; ?>
     @endforeach
   </div>
   @foreach($stock_folders as $stock_folder)
