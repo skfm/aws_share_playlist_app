@@ -131,6 +131,13 @@
           <a class="card-text">
             {{ $playlist->url }}
           </a>
+          <playlist-stock
+            :initial-is-stocked-by='@json($playlist->isStockedBy(Auth::user()))'
+            :initial-count-stocks='@json($playlist->count_stocks)'
+            :authorized='@json(Auth::check())'
+            endpoint="{{ route('playlists.stock', ['playlist' => $playlist]) }}"
+          >
+          </playlist-stock>
           @foreach($playlist->tags as $tag)
             @if($loop->first)
               <div class="card-body pt-0 pb-4 pl-3">

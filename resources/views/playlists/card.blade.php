@@ -25,12 +25,6 @@
             <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $playlist->id }}">
               <i class="fas fa-trash-alt mr-1"></i>プレイリストを削除する
             </a>
-            @if(isset( $stock_folders ))
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route("stocks.edit", ['stock' => $playlist]) }}">
-              <i class="fas fa-pen mr-1"></i>ストックのフォルダ分けをする
-            </a>
-            @endif
           </div>
         </div>
       </div>
@@ -60,6 +54,13 @@
         </div>
       </div>
       <!-- modal -->
+    @endif
+
+    @if(isset( $stock_folders ))
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="{{ route("stocks.edit", ['stock' => $playlist]) }}">
+        <i class="fas fa-pen mr-1"></i>ストックのフォルダ分けをする
+      </a>
     @endif
 
   </div>
