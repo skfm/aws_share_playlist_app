@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PlaylistController@index');
 
 Auth::routes();
 
@@ -29,8 +27,6 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::prefix('playlists')->name('playlists.')->group(function () {
     Route::put('/{playlist}/stock', 'PlaylistController@stock')->name('stock')->middleware('auth');
 
@@ -43,7 +39,7 @@ Route::prefix('playlists')->name('playlists.')->group(function () {
 
 Route::resource('/playlists', 'PlaylistController')->except(['show', 'index'])->middleware('auth');
 
-Route::resource('/playlists', 'PlaylistController')->only(['show', 'index']);
+Route::resource('/playlists', 'PlaylistController')->only(['show']);
 
 Route::resource('/stockfolders', 'StockFolderController')->middleware('auth');
 
