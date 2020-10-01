@@ -35,6 +35,11 @@
           マイページ
         </button>
         <div class="dropdown-divider"></div>
+        <button class="dropdown-item" type="button"
+                onclick="location.href='{{ route("users.edit", ['name' => $user->name]) }}'">
+          プロフィール編集
+        </button>
+        <div class="dropdown-divider"></div>
         <button form="logout-button" class="dropdown-item" type="submit">
           ログアウト
         </button>
