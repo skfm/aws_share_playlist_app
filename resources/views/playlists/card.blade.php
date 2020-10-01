@@ -1,13 +1,12 @@
 <div class="card mt-3">
-  <div class="card-body d-flex flex-row">
+  <div class="card-body d-flex flex-row align-items-center pb-2">
     @if ($playlist->user->image_path)
       <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
     @else
-      <i class="fas fa-user-circle fa-3x"></i>
+      <i class="fas fa-user-circle fa-2x"></i>
     @endif
     <div>
-      <div class="font-weight-bold">{{ $playlist->user->name }}</div>
-      <div class="font-weight-lighter">{{ $playlist->created_at->format('Y/m/d H:i') }}</div>
+      <div class="font-weight-bold ml-2">{{ $playlist->user->name }}</div>
     </div>
 
   @if( Auth::id() === $playlist->user_id )
@@ -55,30 +54,31 @@
       </div>
       <!-- modal -->
     @endif
-
-    @if(isset( $stock_folders ))
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="{{ route("stocks.edit", ['stock' => $stock_ids[$i][0]]) }}">
-        <i class="fas fa-pen mr-1"></i>ストックのフォルダ分けをする
-      </a>
-    @endif
-
   </div>
+
+  @if(isset( $stock_folders ))
+    <div class="stockFolders card-body pt-0 pb-2">
+      <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stock_ids[$i][0]]) }}">
+        <i class="fas fa-pen mr-1"></i>
+        ストックのフォルダ分けをする
+      </a>
+    </div>
+  @endif
+
   <div class="card-body pt-0">
-    <h3 class="h4 card-title">
+    <h3 class="h4 card-title mb-1">
       <a class="text-dark" href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
         {{ $playlist->title }}
       </a>
     </h3>
-    <a href="{{ route('categories.show', ['title' => $playlist->category->title]) }}" class="card-title">
-      {{ $playlist->category->title ?? ''}}
-    <a/>
-    <div class="card-text">
-      {{ $playlist->description }}
+    <div class="d-flex align-items-center">
+      <p class="mb-0">
+        カテゴリー：
+      </p>
+      <a class="text-muted" href="{{ route('categories.show', ['title' => $playlist->category->title]) }}" class="card-title">
+        {{ $playlist->category->title ?? ''}}
+      <a/>
     </div>
-    <a href="{{ $playlist->url }}" class="card-text" target="_blank">
-      {{ $playlist->url }}
-    </a>
     <playlist-stock
       :initial-is-stocked-by='@json($playlist->isStockedBy(Auth::user()))'
       :initial-count-stocks='@json($playlist->count_stocks)'
@@ -88,7 +88,7 @@
     </playlist-stock>
     @foreach($playlist->tags as $tag)
     @if($loop->first)
-      <div class="card-body pt-0 pb-4 pl-3">
+      <div class="tags pt-1">
         <div class="card-text line-height">
     @endif
           <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 mr-1 mt-1 text-muted">
