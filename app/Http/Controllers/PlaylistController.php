@@ -14,27 +14,9 @@ class PlaylistController extends Controller
         $this->authorizeResource(Playlist::class, 'playlist');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-
-        $keyword = $request->input('sort');
-        $query = playlist::query();
-        if ($keyword === "new")
-        {
-            $playlists = $query->orderBy('created_at','desc')->paginate(10);
-        }
-        elseif ($keyword === "old")
-        {
-            $playlists = $query->orderBy('created_at','asc')->paginate(10);
-        }
-        elseif ($keyword === "allsotck")
-        {
-            $playlists = playlist::withCount('stocks')->orderBy('stocks_count', 'desc')->paginate(10);
-        }
-        else
-        {
-            $playlists = $query->orderBy('created_at','desc')->paginate(10);
-        }
+        $playlists = playlist::withCount('stocks')->orderBy('stocks_count', 'desc')->paginate(5);
 
         $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
