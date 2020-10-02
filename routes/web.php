@@ -56,6 +56,8 @@ Route::prefix('users')->name('users.')->group(function () {
 
     Route::patch('/{name}', 'UserController@update')->name('update');
 
+    Route::get('/{name}/icon-edit', 'UserController@iconEdit')->name('icon-edit');
+
     Route::delete('/{name}', 'UserController@destroy')->name('destroy');
 
     Route::get('/{name}/llplaylists', 'UserController@allplaylists')->name('allplaylists');

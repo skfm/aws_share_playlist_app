@@ -1,4 +1,12 @@
 @csrf
+@if ($icon === 1)
+<div class="md-form">
+  <input type="hidden" name="name" class="form-control" required value="{{ $user->name ?? old('name') }}">
+</div>
+<div class="md-form">
+  <input type="file" name="image_path">
+</div>
+@else
 <div class="md-form">
   <label>名前</label>
   <input type="text" name="name" class="form-control" required value="{{ $user->name ?? old('name') }}">
@@ -19,7 +27,4 @@
   <label>Twitter URL</label>
   <input type="text" name="twitter_url" class="form-control" value="{{ $user->twitter_url ?? old('twitter_url') }}">
 </div>
-<div class="md-form">
-  <input type="file" name="image_path">
-</div>
-
+@endif

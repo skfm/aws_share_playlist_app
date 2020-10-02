@@ -27,26 +27,52 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        return view('users.edit', ['user' => $user]);
+        return view('users.edit',
+        ['user' => $user,
+         'icon' => 0]);
+    }
+
+    public function iconEdit(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.icon-edit', ['user' => $user,
+         'icon' => 1]);
     }
 
     public function update(UserRequest $request, string $name)
     {
+
         $user = User::where('name', $name)->first();
 
         $user->name = $request->name;
-        $user->description = $request->description;
-        $user->insta_url = $request->insta_url;
-        $user->youtube_url = $request->youtube_url;
-        $user->twitter_url = $request->twitter_url;
+
+        if ($request->description)
+        {
+            $user->description = $request->description;
+        }
+
+        if ($request->insta_url)
+        {
+            $user->insta_url = $request->insta_url;
+        }
+
+        if ($request->youteb_url)
+        {
+            $user->youtube_url = $request->youtube_url;
+        }
+
+        if ($request->twitter_url)
+        {
+            $user->twitter_url = $request->twitter_url;
+        }
 
         if ($request->file('image_path'))
         {
             $path = $request->file('image_path')->store('public/avatar');
             $user->image_path = basename($path);
-        } else {
-            $user->image_path = '';
         }
+
         $user->save();
 
         $playlists = $user->playlists->sortByDesc('created_at')->take(3);
