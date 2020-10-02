@@ -35,6 +35,11 @@ class UserController extends Controller
         $user = User::where('name', $name)->first();
 
         $user->name = $request->name;
+        $user->description = $request->description;
+        $user->insta_url = $request->insta_url;
+        $user->youtube_url = $request->youtube_url;
+        $user->twitter_url = $request->twitter_url;
+
         if ($request->file('image_path'))
         {
             $path = $request->file('image_path')->store('public/avatar');
