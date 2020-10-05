@@ -28,10 +28,17 @@ class StockFolderController extends Controller
         $user = Auth::user();
         $playlist_ids = $stockfolder->stocks->pluck('playlist_id')->all();
         $playlists = $user->stocks->whereIn('id', $playlist_ids)->all();
+        $count = 0;
+
+        foreach ($playlists as $playlist) {
+            $count = ++$count;
+        }
 
         return view('stockfolders.show', [
             'playlists' => $playlists,
-            '$stockfolder' => $stockfolder,
+            'stockfolder' => $stockfolder,
+            'user' => $user,
+            'count' => $count,
         ]);
     }
 
@@ -69,13 +76,10 @@ class StockFolderController extends Controller
         $user = Auth::user();
         $user_id = Auth::user()->id;
 
-        $playlists = $user->stocks->sortByDesc('created_at');
-
         $stock_folders = $stock_folder::where('user_id', $user_id)->get();
 
-        return view('users.allstocks', [
+        return view('stockfolders.index', [
             'user' => $user,
-            'playlists' => $playlists,
             'stock_folders' => $stock_folders,
         ]);
     }
