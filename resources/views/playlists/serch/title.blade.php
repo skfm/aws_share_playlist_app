@@ -4,21 +4,33 @@
 
 @section('content')
   @include('nav')
-  <form action="{{ url('/playlists/serch/title')}}" method="post">
-  {{ csrf_field()}}
-  {{method_field('get')}}
-  <div class="form-group">
-    <label>名前</label>
-    <input type="text" class="form-control col-md-5" placeholder="タイトルで検索" name="keyword" value="{{ $keyword }}">
-    <select name="sort">
-      <option value="new">新しい順</option>
-      <option value="old">古い順</option>
-      <option value="allsotck">ストックが多い順</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary col-md-5">検索</button>
-  </form>
-  <div class="container">
+
+  <div class="container mt-3 pb-3">
+    <form action="{{ url('/playlists/serch/title')}}" method="post">
+      {{ csrf_field()}}
+      {{method_field('get')}}
+      <div class="form-group">
+        <label>名前</label>
+        <input type="text" class="form-control col-md-5" placeholder="タイトルで検索" name="keyword" value="{{ $keyword }}">
+        <select name="sort class="browser-default custom-select"">
+          <option value="" selected></option>
+          <option value="new">新しい順</option>
+          <option value="old">古い順</option>
+          <option value="allsotck">ストックが多い順</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary col-md-5">検索</button>
+    </form>
+
+    <div class="card mt-3">
+      <div class="card-body d-flex align-items-center justify-content-between">
+        <h2 class="h4 card-title m-0">検索結果：{{ $keyword }}</h2>
+        <div class="card-text text-right">
+          {{ $playlists->count() }}件
+        </div>
+      </div>
+    </div>
+
     @foreach($playlists as $playlist)
       <div class="card mt-3">
         <div class="card-body d-flex flex-row">
