@@ -2,6 +2,7 @@
 
   <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>memo</a>
 
+
   <ul class="navbar-nav ml-auto">
 
     @guest
@@ -22,6 +23,46 @@
     </li>
     @endauth
 
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-search"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+        <form action="{{ url('/playlists/serch/tag')}}" method="post">
+          {{ csrf_field()}}
+          {{method_field('get')}}
+          <div class="form-group p-3">
+            <label>タグ検索</label>
+            <input type="text" class="form-control" placeholder="タグで検索" name="keyword">
+            <select name="sort" class="browser-default custom-select">
+              <option value="" selected></option>
+              <option value="new">新しい順</option>
+              <option value="old">古い順</option>
+              <option value="allsotck">ストックが多い順</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary col-md-5">検索</button>
+        </form>
+
+        <form action="{{ url('/playlists/serch/title')}}" method="post">
+          {{ csrf_field()}}
+          {{method_field('get')}}
+          <div class="form-group p-3">
+            <label>タイトル検索</label>
+            <input type="text" class="form-control" placeholder="タイトルで検索" name="keyword">
+            <select name="sort" class="browser-default custom-select">
+              <option value="" selected></option>
+              <option value="new">新しい順</option>
+              <option value="old">古い順</option>
+              <option value="allsotck">ストックが多い順</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary col-md-5">検索</button>
+          </form>
+      </div>
+    </div>
+
     @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
@@ -36,12 +77,12 @@
         </button>
         <div class="dropdown-divider"></div>
         <button class="dropdown-item" type="button"
-                onclick="location.href='{{ route("users.edit", ['name' => $user->name]) }}'">
+                onclick="location.href='{{ route("users.edit", ['name' => Auth::user()->name]) }}'">
           プロフィール編集
         </button>
         <div class="dropdown-divider"></div>
         <button class="dropdown-item" type="button"
-                onclick="location.href='{{ route("users.icon-edit", ['name' => $user->name]) }}'">
+                onclick="location.href='{{ route("users.icon-edit", ['name' => Auth::user()->name]) }}'">
           アイコン編集
         </button>
         <div class="dropdown-divider"></div>
