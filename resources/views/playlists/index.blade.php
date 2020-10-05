@@ -29,23 +29,26 @@
     @endforeach
   </div>
   <div class="container categories">
-    <ul class="categories-list">
-      <li class="categories-item">
+    <h3 class="">
+      カテゴリー別にみる
+    </h3>
+    <ul class="categories-list d-flex justify-content-between flex-wrap p-0">
+      <li class="categories-item list-group-item col-3">
         <a href="{{ route('categories.show', ['title' => 'プログラミング']) }}" class="card-title">
           プログラミング
         </a>
       </li>
-      <li class="categories-item">
+      <li class="categories-item list-group-item col-3">
         <a href="{{ route('categories.show', ['title' => 'お金']) }}" class="card-title">
           お金
         </a>
       </li>
-      <li class="categories-item">
+      <li class="categories-item list-group-item col-3">
         <a href="{{ route('categories.show', ['title' => '美容']) }}" class="card-title">
           美容
         </a>
       </li>
-      <li class="categories-item">
+      <li class="categories-item list-group-item col-3">
         <a href="{{ route('categories.show', ['title' => '健康']) }}" class="card-title">
           健康
         </a>
