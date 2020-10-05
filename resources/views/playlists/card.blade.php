@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<div class="card mt-3 mb-3">
   <div class="card-body d-flex flex-row align-items-center pb-2">
     @if ($playlist->user->image_path)
       <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
