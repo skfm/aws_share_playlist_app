@@ -120,8 +120,6 @@ class UserController extends Controller
             $stock_ids->push($stock_id);
         }
 
-        // dd($stock_ids);
-
         $stock_folders = $user->stock_folders->all();
 
         return view('users.allstocks', [
