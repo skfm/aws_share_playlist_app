@@ -10,12 +10,15 @@
     @foreach($playlists as $playlist)
       @include('playlists.card')
     @endforeach
-  </div>
-  <a class="nav-link text-muted active"
-             href="{{ route('users.allstocks', [
-              'playlists' => $playlists,
-              'name' => $user->name,
-          ]) }}">
-        ストック一覧
+
+    <div class="btn-wrap mt-3 mb-3">
+      <a type="button" class="d-flex justify-content-center btn btn-flat nav-link text-muted active"
+      href="{{ route('users.allstocks', [
+        'playlists' => $playlists,
+        'name' => $user->name,
+    ]) }}">
+          ストック一覧
       </a>
+    </div>
+  </div>
 @endsection
