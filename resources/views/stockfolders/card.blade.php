@@ -1,6 +1,11 @@
-<div class="card mt-3">
+<div class="card mt-3 mb-3">
   <div class="card-body d-flex flex-row">
-  @if( Auth::id() === $stock_folder->user_id )
+    <h3 class="h5 card-title mb-0">
+      <a class="text-dark" href="{{ route("stockfolders.show", ['stockfolder' => $stock_folder]) }}">
+        {{ $stock_folder->name }}
+      </a>
+    </h3>
+
     <!-- dropdown -->
       <div class="ml-auto card-text">
         <div class="dropdown">
@@ -44,13 +49,5 @@
         </div>
       </div>
       <!-- modal -->
-    @endif
-  </div>
-  <div class="card-body pt-0">
-    <h3 class="h4 card-title">
-      <a class="text-dark" href="">
-        {{ $stock_folder->name }}
-      </a>
-    </h3>
   </div>
 </div>
