@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PlaylistController@index');
+Route::get('/', 'PlaylistController@index')->name('playlists.index');
 
 Auth::routes();
 
