@@ -11,8 +11,8 @@
       @include('playlists.card')
     @endforeach
 
-    <div class="btn-wrap mt-3 mb-3">
-      <a type="button" class="d-flex justify-content-center btn btn-flat nav-link text-muted active"
+    <div class="btn-allstocks">
+      <a type="button" class="btn"
       href="{{ route('users.allstocks', [
         'playlists' => $playlists,
         'name' => $user->name,
