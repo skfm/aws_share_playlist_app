@@ -6,3 +6,130 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import 'reset';
+
+html {
+  font-size: 62.5%;
+  body {
+    font-family: $font-family-noto-sans;
+    font-size: $font-size-base;
+    color: $main-font-color;
+
+    // 共通部分
+    // フッター
+    .footer {
+      margin-top: 32px;
+      border-top: 1px solid $sub-color;
+      small {
+        text-align: center;
+        display: block;
+        padding: 8px 0;
+      }
+    }
+
+    // プレイリスト　テンプレート
+    .playlistsCard {
+      .card-body {
+        img {
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        h3 {
+          font-size: 1.8rem;
+
+          a {
+            color: $main-font-color;
+          }
+        }
+
+        .category-wrap {
+          font-size: 1.2rem;
+        }
+
+        .playlist-number {
+          font-size: 1.2rem;
+        }
+
+        .card-content {
+          .card-title {
+            font-size: 1.6rem;
+          }
+
+          .card-text {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+
+    // TOPページ
+    .copy-btn {
+      display: block;
+      background-color: $main-color;
+      max-width: 120px;
+      margin: 16px auto 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .copy {
+      margin-top: 40px;
+
+      &-title {
+        font-size: 2rem;
+        line-height: $line-height-base;
+        font-weight: 700;
+      }
+
+      &-text {
+        margin-top: 16px;
+
+        p {
+          margin-top: 8px;
+        }
+      }
+    }
+
+    .playlists {
+      margin-top: 32px;
+
+      &-title {
+        font-size: 1.8rem;
+        text-align: center;
+        color: $main-color;
+        font-weight: 700;
+      }
+    }
+
+    .categories {
+      margin-top: 32px;
+
+      &-title {
+        text-align: center;
+        color: $main-color;
+        font-weight: 700;
+      }
+
+      &-item {
+        margin-top: 16px;
+        border: 1px solid $sub-color;
+        text-align: center;
+        border-radius: 10px;
+        max-width: 140px;
+
+        a {
+          font-size: 1.4rem;
+          display: block;
+          padding: 10px 0;
+          color: $main-font-color;
+        }
+      }
+    }
+  }
+}
+
+

@@ -8,6 +8,7 @@
     @yield('title')
   </title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -24,6 +25,9 @@
   <div id="app">
     @yield('content')
   </div>
+  <footer class="footer">
+    <small>Copyright (c) まーべりっく All Rights Reserved.</small>
+  </footer>
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="{{ mix('js/app.js') }}"></script>
