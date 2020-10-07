@@ -1,7 +1,7 @@
-<div class="card mt-3 mb-3">
+<div class="card mt-4 mb-3 playlistsCard">
   <div class="card-body d-flex flex-row align-items-center pb-2">
     @if ($playlist->user->image_path)
-      <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+      <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}">
     @else
       <i class="fas fa-user-circle fa-2x"></i>
     @endif
@@ -66,12 +66,12 @@
   @endif
 
   <div class="card-body pt-0">
-    <h3 class="h4 card-title mb-1">
-      <a class="text-dark" href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
+    <h3 class="card-title mb-1">
+      <a href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
         {{ $playlist->title }}
       </a>
     </h3>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center category-wrap">
       <p class="mb-0">
         カテゴリー：
       </p>
