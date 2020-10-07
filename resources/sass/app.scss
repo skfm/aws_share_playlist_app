@@ -114,6 +114,61 @@ html {
       }
     }
 
+    // ユーザー情報 テンプレート
+    .userCard {
+      .card-body {
+        img {
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        h2 {
+          font-size: 1.8rem;
+
+          a {
+            color: $main-font-color;
+          }
+        }
+
+        .card-text {
+          font-size: 1.4rem;
+        }
+
+        .btn-floating {
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+
+          i {
+            text-align: center;
+            width: inherit;
+            color: #fff;
+          }
+        }
+
+        .btn-tw {
+          color: #fff;
+          background-color: #55acee;
+          margin-left: 4px;
+          margin-right: 4px;
+        }
+
+        .btn-youtube {
+          color: #fff;
+          background-color: $main-color;
+        }
+
+        .btn-insta {
+          background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+          overflow: hidden;
+        }
+      }
+    }
+
     // TOPページ
     .copy-btn {
       display: block;
