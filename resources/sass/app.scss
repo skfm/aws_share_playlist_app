@@ -74,6 +74,12 @@ html {
 
     // プレイリスト　テンプレート
     .playlistsCard {
+      &-name {
+        display: inline-block;
+        margin-left: 5px;
+        color: $main-font-color;
+      }
+
       .card-body {
         img {
           width: 2em;

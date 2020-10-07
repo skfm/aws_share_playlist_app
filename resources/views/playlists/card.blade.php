@@ -6,7 +6,9 @@
       <i class="fas fa-user-circle fa-2x"></i>
     @endif
     <div>
-      <div class="font-weight-bold ml-2">{{ $playlist->user->name }}</div>
+      <a href="{{ route('users.show', ['name' => $playlist->user->name]) }}" class="playlistsCard-name">
+        {{ $playlist->user->name }}
+      </a>
     </div>
 
   @if( Auth::id() === $playlist->user_id )
