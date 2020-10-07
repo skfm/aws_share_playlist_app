@@ -6,10 +6,10 @@
   @include('nav')
 
   <div class="container">
-    <div class="card mt-3">
+    <div class="card mt-3 playlistsCard">
       <div class="card-body d-flex flex-row align-items-center pb-2">
         @if ($playlist->user->image_path)
-          <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+          <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}">
         @else
           <i class="fas fa-user-circle fa-2x"></i>
         @endif
@@ -75,11 +75,11 @@
 
       <div class="card-body pt-0">
         <h3 class="h4 card-title mb-1">
-          <a class="text-dark" href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
+          <a href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
             {{ $playlist->title }}
           </a>
         </h3>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center category-wrap">
           <p class="mb-0">
             カテゴリー：
           </p>
@@ -88,7 +88,7 @@
           <a/>
         </div>
         <div class="card-content mt-2">
-          <p class="card-title mb-0 font-weight-bold">
+          <p class="card-title mb-0">
             プレイリストの説明
           </p>
           <p class="card-text">
@@ -96,13 +96,16 @@
           </p>
         </div>
         <div class="card-content mt-2">
-          <p class="card-title mb-0 font-weight-bold">
+          <p class="card-title mb-0">
             プレイリストのURL
           </p>
           <a href="{{ $playlist->url }}" class="card-text" target="_blank">
             {{ $playlist->url }}
           </a>
         </div>
+        <playlist-url-copy-button
+          :post-url='@json($playlist->url)'
+        ></playlist-url-copy-button>
         <playlist-stock
           :initial-is-stocked-by='@json($playlist->isStockedBy(Auth::user()))'
           :initial-count-stocks='@json($playlist->count_stocks)'
