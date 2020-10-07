@@ -1,7 +1,6 @@
-<nav class="navbar navbar-expand navbar-dark blue-gradient">
+<nav class="navbar navbar-expand navbar-dark">
 
-  <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>memo</a>
-
+  <a class="navbar-brand" href="/"><i class="fab fa-creative-commons-share mr-1"></i>SPL</a>
 
   <ul class="navbar-nav ml-auto">
 
@@ -23,16 +22,16 @@
     </li>
     @endauth
 
-    <div class="nav-item dropdown">
+    <div class="search nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
          aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-search"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+      <div class="search-wrap dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
         <form action="{{ url('/playlists/serch/tag')}}" method="post">
           {{ csrf_field()}}
           {{method_field('get')}}
-          <div class="form-group p-3">
+          <div class="form-group p-3 search-tag">
             <label>タグ検索</label>
             <input type="text" class="form-control" placeholder="タグで検索" name="keyword">
             <select name="sort" class="browser-default custom-select">
@@ -42,13 +41,13 @@
               <option value="allsotck">ストックが多い順</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary col-md-5">検索</button>
+          <button type="submit" class="btn">検索</button>
         </form>
 
         <form action="{{ url('/playlists/serch/title')}}" method="post">
           {{ csrf_field()}}
           {{method_field('get')}}
-          <div class="form-group p-3">
+          <div class="form-group p-3 search-title">
             <label>タイトル検索</label>
             <input type="text" class="form-control" placeholder="タイトルで検索" name="keyword">
             <select name="sort" class="browser-default custom-select">
@@ -58,7 +57,7 @@
               <option value="allsotck">ストックが多い順</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-primary col-md-5">検索</button>
+          <button type="submit" class="btn">検索</button>
           </form>
       </div>
     </div>

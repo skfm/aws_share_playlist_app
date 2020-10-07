@@ -17,6 +17,50 @@ html {
     color: $main-font-color;
 
     // 共通部分
+    // ヘッダー
+    .navbar {
+      background-color: $main-color;
+    }
+
+    .search {
+      &-wrap {
+        padding: 0 0 24px;
+
+        label {
+          font-size: 1.6rem;
+          color: $main-font-color;
+          margin-bottom: 0;
+        }
+
+        input {
+          font-size: 1.4rem;
+          color: $main-font-color;
+          margin-top: 8px;
+        }
+
+        select {
+          font-size: 1.4rem;
+          color: $main-font-color;
+          margin-top: 8px;
+        }
+
+        button {
+          margin: 0 auto;
+          font-size: 1.4rem;
+          background-color: $main-color;
+          width: 80%;
+          padding: 8px;
+          border-radius: 3px;
+          color: #fff;
+          display: block;
+        }
+      }
+
+      &-title {
+        margin-top: 16px;
+      }
+    }
+
     // フッター
     .footer {
       margin-top: 32px;

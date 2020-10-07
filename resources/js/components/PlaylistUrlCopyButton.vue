@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css"　scoped>
   button {
     background-color: #c4302b;
     color: #fff;
