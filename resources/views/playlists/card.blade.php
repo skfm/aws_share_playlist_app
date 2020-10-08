@@ -62,7 +62,7 @@
     <div class="stockFolders card-body pt-0 pb-2">
       <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stock_ids[$i][0]]) }}">
         <i class="fas fa-pen mr-1"></i>
-        ストックのフォルダ分けをする
+        フォルダを選択する
       </a>
     </div>
   @endif
