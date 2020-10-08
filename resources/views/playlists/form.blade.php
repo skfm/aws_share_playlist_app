@@ -1,7 +1,6 @@
 @csrf
 <div class="md-form">
-  <label>タイトル</label>
-  <input type="text" name="title" class="form-control" required value="{{ $playlist->title ?? old('title') }}">
+  <input type="text" name="title" class="form-control" required value="{{ $playlist->title ?? old('title') }}" placeholder="タイトルを入力してください">
 </div>
 <div class="form-group">
   <playlist-tags-input
@@ -12,16 +11,15 @@
 </div>
 <div class="form-group">
   <label></label>
-  <textarea name="description" required class="form-control" rows="16" placeholder="本文">{{ $playlist->description ?? old('description') }}</textarea>
+  <textarea name="description" required class="form-control" rows="10" placeholder="本文">{{ $playlist->description ?? old('description') }}</textarea>
 </div>
 <div class="md-form">
-  <label>YouTubeのプレイリストURL</label>
-  <input type="text" name="url" class="form-control" required value="{{ $playlist->url ?? old('url') }}">
+  <input type="text" name="url" class="form-control" required value="{{ $playlist->url ?? old('url') }}" placeholder="youtubeのプレイリストURLを入力してください">
 </div>
-<div class="md-form">
-  <label>カテゴリー</label>
+<div class="mb-3 category-form">
+  <label>カテゴリー(該当するものがなければ未選択可)</label>
   <select name="category_id" class="form-control">
-    <option value="">選択肢</option>
+    <option value=""></option>
     <option value="1">プログラミング</option>
     <option value="2">お金</option>
     <option value="3">健康</option>

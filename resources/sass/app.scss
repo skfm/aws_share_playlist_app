@@ -120,6 +120,18 @@ html {
       }
     }
 
+    // フォーム関連
+    // プレースホルダー
+    ::placeholder {
+      font-size: 1.2rem;
+    }
+
+    .category-form {
+      label {
+        font-size: 1.2rem;
+      }
+    }
+
     // 更新ボタン
     .btn._submit {
       max-width: 240px;
