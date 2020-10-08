@@ -14,7 +14,7 @@
             <div class="card-text">
               <form method="POST" action="{{ route('stockfolders.store') }}">
                 @include('stockfolders.form')
-                <button type="submit" class="btn blue-gradient btn-block">フォルダを作成する</button>
+                <button type="submit" class="btn _submit">フォルダを作成する</button>
               </form>
             </div>
           </div>
