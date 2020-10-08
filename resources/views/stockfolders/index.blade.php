@@ -9,10 +9,10 @@
     @include('users.user')
 
     <div class="flderLink-wrap d-flex flex-row mt-3">
-      <a class="text-muted active" href="{{ route('stockfolders.create') }}">
+      <a href="{{ route('stockfolders.create') }}">
         フォルダを作成する
       </a>
-      <a class="text-muted active" href="{{ route('stockfolders.index') }}">
+      <a href="{{ route('stockfolders.index') }}">
         フォルダ一覧
       </a>
     </div>
