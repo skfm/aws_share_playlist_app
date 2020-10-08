@@ -121,7 +121,7 @@ html {
     }
 
     // 更新ボタン
-    button[type="submit"] {
+    .btn._submit {
       max-width: 240px;
       margin: auto;
       background-color: #c4302b;
