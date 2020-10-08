@@ -14,7 +14,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{{ route("stockfolders.edit", ['stockfolder' => $stock_folder]) }}">
-              <i class="fas fa-pen mr-1"></i>フォルダを更新する
+              <i class="fas fa-pen mr-1"></i>フォルダ名を変更する
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $stock_folder->id }}">
