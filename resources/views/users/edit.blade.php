@@ -15,7 +15,7 @@
               <form method="POST" action="{{ route('users.update', ['name' => $user->name]) }}" enctype='multipart/form-data'>
                 @method('PATCH')
                 @include('users.form')
-                <button type="submit" class="btn blue-gradient btn-block">更新する</button>
+                <button type="submit" class="btn">更新する</button>
               </form>
             </div>
             <!-- dropdown -->

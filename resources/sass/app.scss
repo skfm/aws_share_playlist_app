@@ -120,6 +120,19 @@ html {
       }
     }
 
+    // 更新ボタン
+    button[type="submit"] {
+      max-width: 240px;
+      margin: auto;
+      background-color: #c4302b;
+      color: #fff;
+      display: block;
+      width: 100%;
+      font-size: 1.4rem;
+    }
+
+    // 共通部分終わり
+
     // TOPページ
     .copy-btn {
       display: block;
@@ -263,6 +276,26 @@ html {
       background-color: $main-color;
     }
   }
+
+  // ユーザーストック一覧ページ
+  .flderLink-wrap {
+    a {
+      display: inline-block;
+      color: $main-color;
+      font-size: $font-size-base;
+      margin-right: 8px;
+    }
+  }
+
+  .stockFolders {
+    a {
+      color: $main-color;
+      font-size: 1.4rem;
+    }
+  }
+
+
+
 }
 
 

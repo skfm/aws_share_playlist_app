@@ -15,7 +15,7 @@
               <form method="POST" action="{{ route('playlists.update', ['playlist' => $playlist]) }}">
                 @method('PATCH')
                 @include('playlists.form')
-                <button type="submit" class="btn blue-gradient btn-block">更新する</button>
+                <button type="submit" class="btn">更新する</button>
               </form>
             </div>
           </div>

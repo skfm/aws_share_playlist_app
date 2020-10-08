@@ -15,7 +15,7 @@
               <form method="POST" action="{{ route('stocks.update', ['stock' => $stock]) }}">
                 @method('PATCH')
                 @include('stocks.form')
-                <button type="submit" class="btn blue-gradient btn-block">更新する</button>
+                <button type="submit" class="btn">更新する</button>
               </form>
             </div>
           </div>
