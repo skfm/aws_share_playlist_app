@@ -122,7 +122,9 @@ html {
 
     // フォーム関連
     // プレースホルダー
-    ::placeholder {
+    ::placeholder,
+    label,
+    .md-form label.active {
       font-size: 1.2rem;
     }
 
@@ -303,6 +305,17 @@ html {
     a {
       color: $main-color;
       font-size: 1.4rem;
+    }
+  }
+
+  // ユーザー編集ページ
+  .userEdit {
+    position: relative;
+
+    &-dropdown {
+      position: absolute;
+      top: 15px;
+      right: 23px;
     }
   }
 

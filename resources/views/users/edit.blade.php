@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card mt-3">
-          <div class="card-body pt-0">
+          <div class="card-body pt-3 userEdit">
             @include('error_card_list')
             <div class="card-text">
               <form method="POST" action="{{ route('users.update', ['name' => $user->name]) }}" enctype='multipart/form-data'>
@@ -19,13 +19,12 @@
               </form>
             </div>
             <!-- dropdown -->
-            <div class="ml-auto card-text">
+            <div class="ml-auto card-text userEdit-dropdown">
               <div class="dropdown">
                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-ellipsis-v"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item text-danger" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">
                     <i class="fas fa-trash-alt mr-1"></i>退会する
                   </a>
