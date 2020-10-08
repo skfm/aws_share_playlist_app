@@ -5,7 +5,7 @@
 @section('content')
   @include('nav')
 
-  <div class="container pb-3">
+  <div class="container pb-3 stockfolder">
     @include('users.user')
 
     <div class="flderLink-wrap d-flex flex-row mt-3">

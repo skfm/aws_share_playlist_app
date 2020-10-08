@@ -1,7 +1,7 @@
 <div class="card mt-3 mb-3">
   <div class="card-body d-flex flex-row">
-    <h3 class="h5 card-title mb-0">
-      <a class="text-dark" href="{{ route("stockfolders.show", ['stockfolder' => $stock_folder]) }}">
+    <h3 class="h5 card-title mb-0 stockfolder-title">
+      <a href="{{ route("stockfolders.show", ['stockfolder' => $stock_folder]) }}">
         {{ $stock_folder->name }}
       </a>
     </h3>

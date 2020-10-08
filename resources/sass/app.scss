@@ -306,8 +306,15 @@ html {
     }
   }
 
-
-
+  // ストックフォルダー一覧ページ
+  .stockfolder {
+    &-title {
+      a {
+        font-size: $font-size-base;
+        color: $main-font-color;
+      }
+    }
+  }
 }
 
 
