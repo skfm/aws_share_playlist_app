@@ -282,7 +282,8 @@ html {
     margin-top: 24px;
 
     a {
-      padding: 16px;
+      font-size: 1.4rem;
+      padding: 8px 0;
       color: #fff;
       display: block;
       max-width: 240px;
@@ -352,7 +353,7 @@ html {
   }
 
   .btn-search {
-    font-size: $font-size-base;
+    font-size: 1.4rem;
     padding: 8px 0;
     width: 100%;
     color: #fff;
