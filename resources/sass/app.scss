@@ -328,6 +328,21 @@ html {
       }
     }
   }
+
+  // タグ検索結果ページ
+  .resultNumber {
+    margin-top: 30px;
+  }
+
+  .btn-search {
+    width: 100%;
+    padding: 16px;
+    color: #fff;
+    display: block;
+    max-width: 240px;
+    margin: 16px auto 24px;
+    background-color: $main-color;
+  }
 }
 
 
