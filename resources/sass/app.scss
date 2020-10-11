@@ -330,13 +330,31 @@ html {
   }
 
   // タグ検索結果ページ
+  // タイトル検索結果ページ
   .resultNumber {
     margin-top: 30px;
+
+    &-title {
+      span {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 32vw;
+        display: inline-block;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  .formResult {
+    max-width: 400px;
+    margin: auto;
   }
 
   .btn-search {
+    font-size: $font-size-base;
+    padding: 8px 0;
     width: 100%;
-    padding: 16px;
     color: #fff;
     display: block;
     max-width: 240px;

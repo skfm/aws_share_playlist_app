@@ -8,20 +8,20 @@
   <div class="container mt-3 pb-3">
     <div class="card resultNumber">
       <div class="card-body d-flex align-items-center justify-content-between">
-        <h2 class="card-title m-0 resultNumber-tilte">検索結果：{{ $keyword }}</h2>
+        <h2 class="card-title m-0 resultNumber-tilte">タグ検索結果：<span>{{ $keyword }}</span></h2>
         <div class="card-text text-right resultNumber-number">
           {{ $playlists->count() }}件
         </div>
       </div>
     </div>
 
-    <div class="form mt-3">
+    <div class="formResult mt-3">
       <form action="{{ url('/playlists/serch/tag')}}" method="post">
         {{ csrf_field()}}
         {{method_field('get')}}
         <div class="form-group">
           <label>名前</label>
-          <input type="text" value="{{ $keyword }}" class="form-control col-md-5" placeholder="タグで検索" name="keyword">
+          <input type="text" value="{{ $keyword }}" class="form-control" placeholder="タグで検索" name="keyword">
         </div>
         <div class="form-group">
           <label>並び順</label>
