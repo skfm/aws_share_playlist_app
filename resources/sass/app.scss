@@ -146,6 +146,10 @@ html {
       }
     }
 
+    .tagWrap {
+      font-size: 1.2rem;
+    }
+
     // フォーム関連
     // プレースホルダー
     ::placeholder,
@@ -172,6 +176,15 @@ html {
 
     .btn._submit {
       font-size: 1.4rem;
+    }
+
+    .btn:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    button:focus {
+      outline: none;
     }
 
     // ページネーション
