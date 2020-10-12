@@ -13,7 +13,7 @@
 
     <div class="btn-allstocks">
       <a type="button" class="btn"
-      href="{{ route('users.allstocks', [
+      href="{{ route('users.all_stocks', [
         'playlists' => $playlists,
         'name' => $user->name,
     ]) }}">

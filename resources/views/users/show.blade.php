@@ -15,7 +15,7 @@
 
     <div class="btn-playlists">
       <a type="button" class="btn"
-             href="{{ route('users.allplaylists', [
+             href="{{ route('users.all_playlists', [
               'name' => $user->name,
           ]) }}">
         プレイリスト一覧

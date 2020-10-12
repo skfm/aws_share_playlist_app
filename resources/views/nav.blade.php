@@ -81,7 +81,7 @@
         </button>
         <div class="dropdown-divider"></div>
         <button class="dropdown-item" type="button"
-                onclick="location.href='{{ route("users.icon-edit", ['name' => Auth::user()->name]) }}'">
+                onclick="location.href='{{ route("users.icon_edit", ['name' => Auth::user()->name]) }}'">
           アイコン編集
         </button>
         <div class="dropdown-divider"></div>

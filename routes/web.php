@@ -50,17 +50,17 @@ Route::prefix('users')->name('users.')->group(function () {
 
     Route::get('/{name}/stocks', 'UserController@stocks')->name('stocks');
 
-    Route::get('/{name}/allstocks', 'UserController@allstocks')->name('allstocks');
+    Route::get('/{name}/all_stocks', 'UserController@allStocks')->name('all_stocks');
 
     Route::get('/{name}/edit', 'UserController@edit')->name('edit');
 
     Route::patch('/{name}', 'UserController@update')->name('update');
 
-    Route::get('/{name}/icon-edit', 'UserController@iconEdit')->name('icon-edit');
+    Route::get('/{name}/icon_edit', 'UserController@iconEdit')->name('icon_edit');
 
     Route::delete('/{name}', 'UserController@destroy')->name('destroy');
 
-    Route::get('/{name}/llplaylists', 'UserController@allplaylists')->name('allplaylists');
+    Route::get('/{name}/all_playlists', 'UserController@allPlaylists')->name('all_playlists');
 });
 
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
