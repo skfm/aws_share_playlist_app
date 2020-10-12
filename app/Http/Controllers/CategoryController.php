@@ -16,24 +16,23 @@ class CategoryController extends Controller
             abort(404);
         }
 
-        $keyword = $request->input('sort');
+        $sort = $request->input('sort');
 
-        if ($keyword === "new")
-        {
-            $playlists = $category->playlists()->orderBy('created_at', 'desc')->paginate(10);
-        }
-        elseif ($keyword === "old")
-        {
-            $playlists = $category->playlists()->orderBy('created_at', 'asc')->paginate(10);
-        }
-        elseif ($keyword === "allsotck")
-        {
-            $playlists = $category->playlists()->withCount('stocks')
-            ->orderby('stocks_count', 'desc')->paginate(10);
-        }
-        else
-        {
-            $playlists = $category->playlists()->orderBy('created_at', 'desc')->paginate(10);
+        switch ($sort) {
+            case "new":
+                $playlists = $category->playlists()->orderBy('created_at', 'desc')->paginate(10);
+                break;
+
+            case "old":
+                $playlists = $category->playlists()->orderBy('created_at', 'asc')->paginate(10);
+                break;
+
+            case "allStock":
+                $playlists = $category->playlists()->withCount('stocks')->orderby('stocks_count', 'desc')->paginate(10);
+                break;
+
+            default:
+                $playlists = $category->playlists()->orderBy('created_at', 'desc')->paginate(10);
         }
 
         return view('categories.show', [
