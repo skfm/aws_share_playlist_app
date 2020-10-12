@@ -60,10 +60,20 @@
 
   @if(isset( $stockFolders ))
     <div class="stockFolders card-body pt-0 pb-2">
-      <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stockIds[$i][0]]) }}">
-        <i class="fas fa-pen mr-1"></i>
-        フォルダを選択する
-      </a>
+      <div class="stockFolders-linkWrap">
+        <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stockIds[$i][0]]) }}">
+          <i class="fas fa-pen mr-1"></i>
+          フォルダを選択する
+        </a>
+      </div>
+      <div class="d-flex align-items-center stockFolders-currentFolder">
+        <p>
+          フォルダー：
+        </p>
+        <a class="stockFolders-currentFolderLink" href="{{ route("stock_folders.show", ['stock_folder' => $stockFolderIds[$i][0]]) }}">
+          {{ $stockNames[$i][0] }}
+        </a>
+      </div>
     </div>
   @endif
 

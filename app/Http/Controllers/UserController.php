@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Tag;
 use App\Http\Requests\UserRequest;
-use App\Playlist;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +35,7 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        return view('users.icon-edit', ['user' => $user,
+        return view('users.icon_edit', ['user' => $user,
          'icon' => 1]);
     }
 
@@ -105,32 +104,42 @@ class UserController extends Controller
         ]);
     }
 
-    public function allstocks(string $name)
+    public function allStocks(string $name)
     {
         $user = User::where('name', $name)->first();
 
-        $user_id = $user->id;
+        $userId = $user->id;
 
         $playlists = $user->stocks->sortByDesc('created_at');
 
-        $stock_ids = collect([]);
+        $stockIds = collect([]);
+        $stockFolderIds = collect([]);
+        $stockNames = collect([]);
 
         foreach ($playlists as $playlist) {
-            $stock_id = $playlist->stocks_id->where('user_id', $user_id)->pluck('id');
-            $stock_ids->push($stock_id);
+            $stockId = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
+            $stockIds->push($stockId);
+
+            $stockFolderId = $playlist->stocks_id->where('user_id', $userId)->pluck('stock_folder_id');
+            $stockFolderIds->push($stockFolderId);
+
+            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');;
+            $stockNames->push($stockName);
         }
 
-        $stock_folders = $user->stock_folders->all();
+        $stockFolders = $user->stock_folders->all();
 
-        return view('users.allstocks', [
+        return view('users.all_stocks', [
             'user' => $user,
             'playlists' => $playlists,
-            'stock_folders' => $stock_folders,
-            'stock_ids' => $stock_ids,
+            'stockFolders' => $stockFolders,
+            'stockIds' => $stockIds,
+            'stockFolderIds' => $stockFolderIds,
+            'stockNames' => $stockNames,
         ]);
     }
 
-    public function allplaylists(string $name)
+    public function allPlaylists(string $name)
     {
 
         $user = User::where('name', $name)->first();
@@ -141,7 +150,7 @@ class UserController extends Controller
             return ['text' => $tag->name];
         });
 
-        return view('users.allplaylists', [
+        return view('users.all_playlists', [
             'playlists' => $playlists,
             'allTagNames' => $allTagNames,
             'user' => $user,

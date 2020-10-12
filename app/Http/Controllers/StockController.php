@@ -37,7 +37,7 @@ class StockController extends Controller
             $stockIds->push($stock_id);
         }
 
-        return view('users.allstocks', [
+        return view('users.all_stocks', [
           'user' => $user,
           'playlists' => $playlists,
           'stock_folders' => $stockFolders,

@@ -30,10 +30,18 @@ class StockFolderController extends Controller
         $playlistIds = $stockFolder->stocks->pluck('playlist_id')->all();
         $playlists = $user->stocks->whereIn('id', $playlistIds)->all();
         $stockIds = collect([]);
+        $stockFolderIds = collect([]);
+        $stockNames = collect([]);
 
         foreach ($playlists as $playlist) {
             $stockId = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
             $stockIds->push($stockId);
+
+            $stockFolderId = $playlist->stocks_id->where('user_id', $userId)->pluck('stock_folder_id');
+            $stockFolderIds->push($stockFolderId);
+
+            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');;
+            $stockNames->push($stockName);
         }
 
         $count = 0;
@@ -49,6 +57,8 @@ class StockFolderController extends Controller
             'count' => $count,
             'stockFolders' => $stockFolders,
             'stockIds' => $stockIds,
+            'stockFolderIds' => $stockFolderIds,
+            'stockNames' => $stockNames,
         ]);
     }
 
