@@ -20,9 +20,10 @@
       <div class="form-group">
         <label>並び順</label>
         <select name="sort" class="browser-default custom-select">
+          <option value=""></option>
           <option value="new">新しい順</option>
           <option value="old">古い順</option>
-          <option value="allsotck">ストックが多い順</option>
+          <option value="allStock">ストックが多い順</option>
         </select>
       </div>
       <button type="submit" class="btn btn-search">並び替え</button>
@@ -32,5 +33,6 @@
     @foreach($playlists as $playlist)
       @include('playlists.card')
     @endforeach
+    {{ $playlists->links() }}
   </div>
 @endsection
