@@ -12,6 +12,12 @@ class TagController extends Controller
     {
         $tag = Tag::where('name', $name)->first();
 
-        return view('tags.show', ['tag' => $tag]);
+        $playlists = $tag->playlists()->paginate(10);
+
+        return view('tags.show',
+        [
+            'tag' => $tag,
+            'playlists' => $playlists,
+        ]);
     }
 }
