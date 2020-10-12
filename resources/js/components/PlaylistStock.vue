@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="d-flex align-items-center tagWrap">
     <button
       type="button"
-      class="btn m-0 p-1 shadow-none"
+      class="m-0 p-1 shadow-none"
     >
       <i class="fas fa-archive mr-1"
          :class="{'red-text':this.isStockedBy, 'animated heartBeat fast':this.gotToStock}"
