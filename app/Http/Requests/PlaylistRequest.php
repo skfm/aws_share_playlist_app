@@ -26,6 +26,7 @@ class PlaylistRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'description' => 'required|max:1000',
+            'url' => 'required',
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
