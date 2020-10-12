@@ -9,7 +9,12 @@ class CategoryController extends Controller
 {
     public function show(Request $request,string $title)
     {
+
         $category = Category::where('title', $title)->first();
+
+        if(is_null($category)) {
+            abort(404);
+        }
 
         $keyword = $request->input('sort');
 
