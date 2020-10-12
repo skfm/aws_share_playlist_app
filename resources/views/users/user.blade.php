@@ -14,11 +14,11 @@
         </h2>
       </div>
       <div class="sns-wrap d-flex flex-row align-items-center">
-        <a href="{{ $user->insta_url }}" type="button" class="btn-floating btn-small btn-insta"><i class="fab fa-instagram"></i></a>
+        <a href="{{ $user->insta_url }}" type="button" class="btn-floating btn-small btn-insta" target="_blank"><i class="fab fa-instagram"></i></a>
 
-        <a href="{{ $user->twitter_url }}" type="button" class="btn-floating btn-small btn-tw"><i class="fab fa-twitter"></i></a>
+        <a href="{{ $user->twitter_url }}" type="button" class="btn-floating btn-small btn-tw" target="_blank"><i class="fab fa-twitter"></i></a>
 
-        <a href="{{ $user->youtube_url }}" type="button" class="btn-floating btn-small btn-youtube"><i class="fab fa-youtube"></i></a>
+        <a href="{{ $user->youtube_url }}" type="button" class="btn-floating btn-small btn-youtube" target="_blank"><i class="fab fa-youtube"></i></a>
       </div>
     </div>
     <p class="card-text mt-2">

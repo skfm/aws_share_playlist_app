@@ -58,7 +58,7 @@
     @endif
   </div>
 
-  @if(isset( $stockFolders ))
+  @if(isset( $stockFolders ) && Auth::id() === $user->id)
     <div class="stockFolders card-body pt-0 pb-2">
       <div class="stockFolders-linkWrap">
         <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stockIds[$i][0]]) }}">
