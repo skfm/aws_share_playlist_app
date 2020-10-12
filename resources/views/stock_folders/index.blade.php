@@ -9,16 +9,16 @@
     @include('users.user')
 
     <div class="flderLink-wrap d-flex flex-row mt-3">
-      <a href="{{ route('stockfolders.create') }}">
+      <a href="{{ route('stock_folders.create') }}">
         フォルダを作成する
       </a>
-      <a href="{{ route('stockfolders.index') }}">
+      <a href="{{ route('stock_folders.index') }}">
         フォルダ一覧
       </a>
     </div>
 
-    @foreach($stock_folders as $stock_folder)
-      @include('stockfolders.card')
+    @foreach($stockFolders as $stockFolder)
+      @include('stock_folders.card')
     @endforeach
   </div>
 @endsection

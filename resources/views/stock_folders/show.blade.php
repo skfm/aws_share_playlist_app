@@ -8,17 +8,17 @@
     @include('users.user')
 
     <div class="flderLink-wrap d-flex flex-row mt-3">
-      <a href="{{ route('stockfolders.create') }}">
+      <a href="{{ route('stock_folders.create') }}">
         フォルダを作成する
       </a>
-      <a href="{{ route('stockfolders.index') }}">
+      <a href="{{ route('stock_folders.index') }}">
         フォルダ一覧
       </a>
     </div>
 
     <div class="card mt-3">
       <div class="card-body d-flex align-items-center justify-content-between">
-        <h2 class="h4 card-title m-0">フォルダ：{{ $stockfolder->name }}</h2>
+        <h2 class="card-title m-0">フォルダ：{{ $stockFolder->name }}</h2>
         <div class="card-text text-right">
           {{ $count }}件
         </div>

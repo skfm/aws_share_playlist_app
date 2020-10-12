@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\StockFolder;
-use App\Stock;
 use App\Http\Requests\StockFolderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,28 +12,28 @@ class StockFolderController extends Controller
     {
 
         $user = Auth::user();
-        $user_id = Auth::user()->id;
+        $userId = Auth::user()->id;
 
-        $stock_folders = $stockFolder::where('user_id', $user_id)->get();
+        $stockFolders = $stockFolder::where('user_id', $userId)->get();
 
-        return view('stockfolders.index', [
-            'stock_folders' => $stock_folders,
+        return view('stock_folders.index', [
+            'stockFolders' => $stockFolders,
             'user' => $user,
         ]);
     }
 
-    public function show(StockFolder $stockfolder)
+    public function show(StockFolder $stockFolder)
     {
         $user = Auth::user();
-        $user_id = $user->id;
-        $stock_folders = $user->stock_folders->all();
-        $playlist_ids = $stockfolder->stocks->pluck('playlist_id')->all();
-        $playlists = $user->stocks->whereIn('id', $playlist_ids)->all();
-        $stock_ids = collect([]);
+        $userId = $user->id;
+        $stockFolders = $user->stock_folders->all();
+        $playlistIds = $stockFolder->stocks->pluck('playlist_id')->all();
+        $playlists = $user->stocks->whereIn('id', $playlistIds)->all();
+        $stockIds = collect([]);
 
         foreach ($playlists as $playlist) {
-            $stock_id = $playlist->stocks_id->where('user_id', $user_id)->pluck('id');
-            $stock_ids->push($stock_id);
+            $stockId = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
+            $stockIds->push($stockId);
         }
 
         $count = 0;
@@ -43,57 +42,55 @@ class StockFolderController extends Controller
             $count = ++$count;
         }
 
-        return view('stockfolders.show', [
+        return view('stock_folders.show', [
             'playlists' => $playlists,
-            'stockfolder' => $stockfolder,
+            'stockFolder' => $stockFolder,
             'user' => $user,
             'count' => $count,
-            'stock_folders' => $stock_folders,
-            'stock_ids' => $stock_ids,
+            'stockFolders' => $stockFolders,
+            'stockIds' => $stockIds,
         ]);
     }
 
-    public function edit(StockFolder $stockfolder)
+    public function edit(StockFolder $stockFolder)
     {
-        return view('stockfolders.edit',[
-            'stockfolder' => $stockfolder,
+        return view('stock_folders.edit',[
+            'stockFolder' => $stockFolder,
         ]);
     }
 
-    public function update(StockFolderRequest $request, StockFolder $stockfolder)
+    public function update(StockFolderRequest $request, StockFolder $stockFolder)
     {
-        $stockfolder->fill($request->all())->save();
+        $stockFolder->fill($request->all())->save();
 
-        return redirect()->route('stockfolders.index');
+        return redirect()->route('stock_folders.index');
     }
 
-    public function destroy(StockFolder $stockfolder)
+    public function destroy(StockFolder $stockFolder)
     {
-        $stockfolder->delete();
-        return redirect()->route('stockfolders.index');
+        $stockFolder->delete();
+        return redirect()->route('stock_folders.index');
     }
 
     public function create()
     {
-        return view('stockfolders.create');
+        return view('stock_folders.create');
     }
 
-    public function store(StockFolderRequest $request, StockFolder $stock_folder)
+    public function store(StockFolderRequest $request, StockFolder $stockFolder)
     {
-        $stock_folder->fill($request->all());
-        $stock_folder->user_id = $request->user()->id;
-        $stock_folder->save();
+        $stockFolder->fill($request->all());
+        $stockFolder->user_id = $request->user()->id;
+        $stockFolder->save();
 
         $user = Auth::user();
-        $user_id = Auth::user()->id;
+        $userId = Auth::user()->id;
 
-        $stock_folders = $stock_folder::where('user_id', $user_id)->get();
+        $stockFolders = $stockFolder::where('user_id', $userId)->get();
 
-        return view('stockfolders.index', [
+        return view('stock_folders.index', [
             'user' => $user,
-            'stock_folders' => $stock_folders,
+            'stockFolders' => $stockFolders,
         ]);
     }
-
-
 }

@@ -12,9 +12,9 @@
           <div class="card-body pt-0">
             @include('error_card_list')
             <div class="card-text">
-              <form method="POST" action="{{ route('stockfolders.update', ['stockfolder' => $stockfolder]) }}">
+              <form method="POST" action="{{ route('stock_folders.update', ['stock_folder' => $stockFolder]) }}">
                 @method('PATCH')
-                @include('stockfolders.form')
+                @include('stock_folders.form')
                 <button type="submit" class="btn _submit">更新する</button>
               </form>
             </div>

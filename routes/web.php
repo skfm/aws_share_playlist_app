@@ -41,7 +41,7 @@ Route::resource('/playlists', 'PlaylistController')->except(['show', 'index'])->
 
 Route::resource('/playlists', 'PlaylistController')->only(['show']);
 
-Route::resource('/stockfolders', 'StockFolderController')->middleware('auth');
+Route::resource('/stock_folders', 'StockFolderController')->middleware('auth');
 
 Route::resource('/stocks', 'StockController')->except(['index','show','delete'])->middleware('auth');
 

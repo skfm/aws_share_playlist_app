@@ -58,9 +58,9 @@
     @endif
   </div>
 
-  @if(isset( $stock_folders ))
+  @if(isset( $stockFolders ))
     <div class="stockFolders card-body pt-0 pb-2">
-      <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stock_ids[$i][0]]) }}">
+      <a class="stockFolders-link" href="{{ route("stocks.edit", ['stock' => $stockIds[$i][0]]) }}">
         <i class="fas fa-pen mr-1"></i>
         フォルダを選択する
       </a>
