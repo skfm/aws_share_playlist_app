@@ -152,6 +152,17 @@ html {
       font-size: 1.4rem;
     }
 
+    // ページネーション
+    .pagination {
+      justify-content: center;
+
+      .page-item.active {
+        .page-link {
+          background-color: $main-color;
+        }
+      }
+    }
+
     // 共通部分終わり
 
     // TOPページ
