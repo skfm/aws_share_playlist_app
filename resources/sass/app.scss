@@ -17,6 +17,13 @@ html {
     color: $main-font-color;
 
     // 共通部分
+    // バリデーションエラー表示
+    .validation {
+      &-item {
+        font-size: 1.4rem;
+      }
+    }
+
     // ヘッダー
     .navbar {
       background-color: $main-color;
