@@ -20,5 +20,6 @@
     @foreach($stockFolders as $stockFolder)
       @include('stock_folders.card')
     @endforeach
+    {{ $stockFolders->links() }}
   </div>
 @endsection
