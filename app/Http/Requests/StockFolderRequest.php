@@ -24,14 +24,15 @@ class StockFolderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|max:30',
         ];
     }
 
-    public function messages()
+    public function attributes()
     {
         return [
-            "name" => "フォルダ名を入力してください",
+            'name' => 'フォルダ名',
         ];
     }
+
 }
