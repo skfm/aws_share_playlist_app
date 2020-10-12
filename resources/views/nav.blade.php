@@ -28,7 +28,7 @@
         <i class="fas fa-search"></i>
       </a>
       <div class="search-wrap dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-        <form action="{{ url('/playlists/serch/tag')}}" method="post">
+        <form action="{{ url('/playlists/search/tag')}}" method="post">
           {{ csrf_field()}}
           {{method_field('get')}}
           <div class="form-group p-3 search-tag">
@@ -38,13 +38,13 @@
               <option value="" selected></option>
               <option value="new">新しい順</option>
               <option value="old">古い順</option>
-              <option value="allsotck">ストックが多い順</option>
+              <option value="allSotck">ストックが多い順</option>
             </select>
           </div>
           <button type="submit" class="btn">検索</button>
         </form>
 
-        <form action="{{ url('/playlists/serch/title')}}" method="post">
+        <form action="{{ url('/playlists/search/title')}}" method="post">
           {{ csrf_field()}}
           {{method_field('get')}}
           <div class="form-group p-3 search-title">
@@ -54,7 +54,7 @@
               <option value="" selected></option>
               <option value="new">新しい順</option>
               <option value="old">古い順</option>
-              <option value="allsotck">ストックが多い順</option>
+              <option value="allSotck">ストックが多い順</option>
             </select>
           </div>
           <button type="submit" class="btn">検索</button>

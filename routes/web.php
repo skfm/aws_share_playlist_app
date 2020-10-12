@@ -32,9 +32,9 @@ Route::prefix('playlists')->name('playlists.')->group(function () {
 
     Route::delete('/{playlist}/stock', 'PlaylistController@deleteStock')->name('deleteStock')->middleware('auth');
 
-    Route::get('/serch/title', 'PlaylistController@serchTitle')->name('search_title');
+    Route::get('/search/title', 'PlaylistController@searchTitle')->name('search_title');
 
-    Route::get('/serch/tag', 'PlaylistController@serchTag')->name('serach_tag');
+    Route::get('/search/tag', 'PlaylistController@searchTag')->name('search_tag');
 });
 
 Route::resource('/playlists', 'PlaylistController')->except(['show', 'index'])->middleware('auth');

@@ -91,10 +91,8 @@ class PlaylistController extends Controller
 
     public function show(Playlist $playlist)
     {
-        $category_name = $playlist->category->title;
         return view('playlists.show', [
             'playlist' => $playlist,
-            'category_name' => $category_name,
         ]);
     }
 
@@ -119,42 +117,38 @@ class PlaylistController extends Controller
         ];
     }
 
-    public function serchTitle(Request $request)
+    public function searchTitle(Request $request)
     {
         $keyword = $request->keyword;
 
         $sort = $request->input('sort');
 
-        if(!empty($keyword)) {
-            $query = playlist::query();
-            if(!empty($keyword))
-            {
-                $query = $query->where('title','like', "%$keyword%");
-            }
-        }
+        $query = playlist::query();
+        $query = $query->where('title','like', "%$keyword%");
 
-        if ($sort === "new")
-        {
-            $playlists = $query->orderBy('created_at','desc')->paginate(10);
-        }
-        elseif ($sort === "old")
-        {
-            $playlists = $query->orderBy('created_at','asc')->paginate(10);
-        }
-        elseif ($sort === "allsotck")
-        {
-            $playlists = playlist::withCount('stocks')->where('title','like', "%$keyword%")->orderBy('stocks_count', 'desc')->paginate(10);
-        }
-        else
-        {
-            $playlists = $query->orderBy('created_at','desc')->paginate(10);
+        switch ($sort) {
+            case "new":
+                $playlists = $query->orderBy('created_at','desc')->paginate(10);
+                break;
+
+            case "old":
+                $playlists = $query->orderBy('created_at','desc')->paginate(10);
+                break;
+
+            case "allStock":
+                $playlists = playlist::withCount('stocks')->where('title','like', "%$keyword%")->orderBy('stocks_count', 'desc')->paginate(10);
+                break;
+
+            default:
+                $playlists = $query->orderBy('created_at','desc')->paginate(10);
+
         }
 
         $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
 
-        return view('playlists.serch.title', [
+        return view('playlists.search.title', [
             'playlists' => $playlists,
             'allTagNames' => $allTagNames,
             'keyword' => $keyword,
@@ -162,7 +156,7 @@ class PlaylistController extends Controller
 
     }
 
-    public function serchTag(Request $request)
+    public function searchTag(Request $request)
     {
         $keyword = $request->keyword;
 
@@ -172,31 +166,32 @@ class PlaylistController extends Controller
             $query->where('tags.name','like', "%$keyword%");
         });
 
-        if ($sort === "new")
-        {
-            $playlists = $playlists->orderBy('created_at','desc')->paginate(10);
-        }
-        elseif ($sort === "old")
-        {
-            $playlists = $playlists->orderBy('created_at','asc')->paginate(10);
-        }
-        elseif ($sort === "allsotck")
-        {
-            $playlists = playlist::whereHas('tags', function($query) use ($keyword) {
-                $query->where('tags.name','like', "%$keyword%");
-            })->withCount('stocks')
-            ->orderby('stocks_count', 'desc')->paginate(10);
-        }
-        else
-        {
-            $playlists = $playlists->orderBy('created_at','desc')->paginate(10);
+        switch ($sort) {
+            case "new":
+                $playlists = $playlists->orderBy('created_at','desc')->paginate(10);
+                break;
+
+            case "old":
+                $playlists = $playlists->orderBy('created_at','asc')->paginate(10);
+                break;
+
+            case "allStock":
+                $playlists = playlist::whereHas('tags', function($query) use ($keyword) {
+                    $query->where('tags.name','like', "%$keyword%");
+                })->withCount('stocks')
+                ->orderby('stocks_count', 'desc')->paginate(10);
+                break;
+
+            default:
+                $playlists = $playlists->orderBy('created_at','desc')->paginate(10);
+
         }
 
         $allTagNames = Tag::all()->map(function ($tag) {
             return ['text' => $tag->name];
         });
 
-        return view('playlists.serch.tag', [
+        return view('playlists.search.tag', [
             'playlists' => $playlists,
             'allTagNames' => $allTagNames,
             'keyword' => $keyword,
