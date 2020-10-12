@@ -17,6 +17,12 @@ html {
     color: $main-font-color;
 
     // 共通部分
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 720px;
+      }
+    }
+
     // エラーページ
     .errorPage {
       margin-top: 32px;
