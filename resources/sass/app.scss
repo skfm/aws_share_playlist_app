@@ -160,14 +160,17 @@ html {
       }
     }
 
-    // 更新ボタン
-    .btn._submit {
+    //ボタン
+    .btn {
       max-width: 240px;
       margin: auto;
       background-color: #c4302b;
       color: #fff;
       display: block;
       width: 100%;
+    }
+
+    .btn._submit {
       font-size: 1.4rem;
     }
 
