@@ -7,7 +7,7 @@
   <div class="container">
     @include('users.user')
 
-    <div class="flderLink-wrap d-flex flex-row mt-3">
+    <div class="folderLink-wrap d-flex flex-row mt-3">
       <a href="{{ route('stock_folders.create') }}">
         フォルダを作成する
       </a>

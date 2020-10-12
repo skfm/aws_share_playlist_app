@@ -312,7 +312,7 @@ html {
   }
 
   // ユーザーストック一覧ページ
-  .flderLink-wrap {
+  .folderLink-wrap {
     a {
       display: inline-block;
       color: $main-color;
@@ -325,6 +325,16 @@ html {
     a {
       color: $main-color;
       font-size: 1.4rem;
+    }
+
+    &-currentFolder {
+      p {
+        font-size: 1.2rem;
+      }
+
+      a {
+        font-size: 1.2rem;
+      }
     }
   }
 
