@@ -29,6 +29,13 @@ class UserRequest extends FormRequest
         ];
     }
 
+    public function attributes()
+    {
+        return [
+            'name' => 'ユーザー名',
+        ];
+    }
+
     public function messages()
     {
         return [
