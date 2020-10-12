@@ -17,6 +17,25 @@ html {
     color: $main-font-color;
 
     // 共通部分
+    // エラーページ
+    .errorPage {
+      margin-top: 32px;
+      text-align: center;
+
+      &-title {
+        font-size: 2rem;
+      }
+
+      &-text {
+        margin-top: 8px;
+      }
+
+      .copy-btn {
+        max-width: 240px;
+        font-size: 1.4rem;
+      }
+    }
+
     // バリデーションエラー表示
     .validation {
       &-item {
