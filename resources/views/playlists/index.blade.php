@@ -32,6 +32,7 @@
     @foreach($playlists as $playlist)
       @include('playlists.card')
     @endforeach
+    {{ $playlists->links() }}
   </div>
   <div class="container categories">
     <h3 class="categories-title">
