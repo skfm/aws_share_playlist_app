@@ -23,8 +23,12 @@
   <select name="category_id" class="form-control">
     <option value=""></option>
     <option value="1">プログラミング</option>
-    <option value="2">お金</option>
+    <option value="2">副業</option>
     <option value="3">健康</option>
     <option value="4">美容</option>
+    <option value="5">トレーニング</option>
+    <option value="6">投資</option>
+    <option value="7">恋愛</option>
+    <option value="8">オモシロ動画</option>
   </select>
 </div>
