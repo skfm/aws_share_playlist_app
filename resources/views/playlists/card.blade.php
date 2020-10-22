@@ -83,6 +83,7 @@
         {{ $playlist->title }}
       </a>
     </h3>
+    if(!($playlist->category === null))
     <div class="d-flex align-items-center category-wrap">
       <p class="mb-0">
         カテゴリー：
@@ -91,6 +92,7 @@
         {{ $playlist->category->title ?? ''}}
       <a/>
     </div>
+    endif
     <playlist-stock
       :initial-is-stocked-by='@json($playlist->isStockedBy(Auth::user()))'
       :initial-count-stocks='@json($playlist->count_stocks)'
