@@ -92,7 +92,7 @@
         {{ $playlist->category->title ?? ''}}
       <a/>
     </div>
-    endif
+    @endif
     <playlist-stock
       :initial-is-stocked-by='@json($playlist->isStockedBy(Auth::user()))'
       :initial-count-stocks='@json($playlist->count_stocks)'
