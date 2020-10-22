@@ -15,7 +15,7 @@ jobs:
         steps:
             - checkout
             - add_ssh_keys:
-            - run: ssh ${USER_NAME}@${HOST_NAME} 'cd [/var/www/aws_share_playlist_app/] && git pull'
+            - run: ssh ${USER_NAME}@${HOST_NAME} 'cd /var/www/aws_share_playlist_app/ && git pull'
 
 workflows:
     version: 2
