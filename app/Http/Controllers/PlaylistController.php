@@ -50,7 +50,13 @@ class PlaylistController extends Controller
             $playlist->tags()->attach($tag);
         });
 
-        return redirect()->route('playlists.index');
+        $user = Auth::user();
+        $playlists = $user->playlists->sortByDesc('created_at')->take(3);
+
+        return view('users.show', [
+            'user' => $user,
+            'playlists' => $playlists,
+        ]);
     }
 
     public function edit(Playlist $playlist)
@@ -80,13 +86,26 @@ class PlaylistController extends Controller
             $playlist->tags()->attach($tag);
         });
 
-        return redirect()->route('playlists.index');
+        $user = Auth::user();
+        $playlists = $user->playlists->sortByDesc('created_at')->take(3);
+
+        return view('users.show', [
+            'user' => $user,
+            'playlists' => $playlists,
+        ]);
     }
 
     public function destroy(Playlist $playlist)
     {
         $playlist->delete();
-        return redirect()->route('playlists.index');
+
+        $user = Auth::user();
+        $playlists = $user->playlists->sortByDesc('created_at')->take(3);
+
+        return view('users.show', [
+            'user' => $user,
+            'playlists' => $playlists,
+        ]);
     }
 
     public function show(Playlist $playlist)
