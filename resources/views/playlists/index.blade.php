@@ -8,7 +8,7 @@
   <div class="container copy">
     <h2 class="copy-title">
       <p>
-        SharePlaylitはみんなにみて欲しいYouTube動画のプレイリストを共有するサービスです。
+        SharePlaylistはみんなにみて欲しいYouTube動画のプレイリストを共有するサービスです。
       </p>
     </h2>
 
