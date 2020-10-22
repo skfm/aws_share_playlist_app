@@ -83,7 +83,7 @@
         {{ $playlist->title }}
       </a>
     </h3>
-    if(!($playlist->category === null))
+    @if(!($playlist->category === null))
     <div class="d-flex align-items-center category-wrap">
       <p class="mb-0">
         カテゴリー：
