@@ -13,7 +13,8 @@ class UserController extends Controller
 {
     public function show(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+        ->load(['playlists.user', 'playlists.stocks', 'playlists.tags']);
 
         if (is_null($user)) {
             abort(404);
@@ -100,7 +101,8 @@ class UserController extends Controller
 
     public function stocks(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::where('name', $name)->first()
+        ->load(['stocks.user', 'stocks.stocks', 'stocks.tags']);
 
         $playlists = $user->stocks->sortByDesc('created_at')->take(3);
 
