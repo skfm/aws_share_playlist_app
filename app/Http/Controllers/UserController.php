@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class UserController extends Controller
 {
@@ -70,10 +71,11 @@ class UserController extends Controller
             $user->twitter_url = $request->twitter_url;
         }
 
-        if ($request->file('image_path'))
+        if ($request->file('image_path')->isValid())
         {
-            $path = $request->file('image_path')->store('public/avatar');
-            $user->image_path = basename($path);
+            $disk = Storage::disk('s3');
+            $fileName = $disk->put('', $request->file('image_path'));
+            $user->image_path = $fileName;
         }
 
         $user->save();

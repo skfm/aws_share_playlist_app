@@ -3,7 +3,7 @@
     <div class="d-flex flex-row align-items-center justify-content-between">
       <div class="title-wrap d-flex flex-row align-items-center">
         @if($user->image_path)
-        <img src="{{ asset('storage/avatar/' . $user->image_path) }}">
+        <img src="{{ Storage::disk('s3')->url($user->image_path) }}">
         @else
         <i class="fas fa-user-circle fa-3x"></i>
         @endif
