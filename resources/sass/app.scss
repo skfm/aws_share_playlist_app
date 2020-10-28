@@ -176,6 +176,11 @@ html {
       }
     }
 
+    .ti-new-tag-input-wrapper[data-v-61d92e31] {
+      padding: 0;
+      margin: 0;
+    }
+
     //ボタン
     .btn {
       max-width: 240px;
@@ -189,6 +194,7 @@ html {
 
     .btn._submit {
       font-size: 1.4rem;
+      margin-bottom: 32px;
     }
 
     .btn:hover {

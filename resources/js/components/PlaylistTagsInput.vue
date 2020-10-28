@@ -67,5 +67,7 @@ export default {
   }
   .vue-tags-input .ti-tag::before {
     content: "#";
+    position: relative;
+    top: 1.5px;
   }
 </style>
