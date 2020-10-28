@@ -291,6 +291,13 @@ html {
         object-fit: cover;
       }
 
+      .user-icon {
+        img {
+          width: 4em;
+          height: 4em;
+        }
+      }
+
       h2 {
         font-size: 1.8rem;
 
