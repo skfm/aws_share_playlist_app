@@ -164,6 +164,10 @@ html {
       font-size: 1.2rem;
     }
 
+    .ti-new-tag-input-wrapper input[data-v-61d92e31]::placeholder {
+      font-size: 1rem;
+    }
+
     .category-form {
       label {
         font-size: 1.2rem;
@@ -174,11 +178,6 @@ html {
       input {
         padding-left: 8px!important;
       }
-    }
-
-    .ti-new-tag-input-wrapper[data-v-61d92e31] {
-      padding: 0;
-      margin: 0;
     }
 
     //ボタン
