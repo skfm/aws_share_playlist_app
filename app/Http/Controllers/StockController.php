@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Stock;
 use Illuminate\Http\Request;
 use App\Http\Requests\StockRequest;
+use App\StockFolder;
 use Illuminate\Support\Facades\Auth;
 
 class StockController extends Controller
@@ -32,16 +33,29 @@ class StockController extends Controller
 
         $stockIds = collect([]);
 
+        $stockFolderIds = collect([]);
+        $stockNames = collect([]);
+
         foreach ($playlists as $playlist) {
-            $stock_id = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
-            $stockIds->push($stock_id);
+            $stockId = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
+            $stockIds->push($stockId);
+
+            $stockFolderId = $playlist->stocks_id->where('user_id', $userId)->pluck('stock_folder_id');
+            $stockFolderIds->push($stockFolderId);
+
+            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');;
+            $stockNames->push($stockName);
         }
 
+        $stockFolders = $user->stock_folders->all();
+
         return view('users.all_stocks', [
-          'user' => $user,
-          'playlists' => $playlists,
-          'stock_folders' => $stockFolders,
-          'stock_ids' => $stockIds,
+        'user' => $user,
+        'playlists' => $playlists,
+        'stockFolders' => $stockFolders,
+        'stockIds' => $stockIds,
+        'stockFolderIds' => $stockFolderIds,
+        'stockNames' => $stockNames,
       ]);
     }
 }

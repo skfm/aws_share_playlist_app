@@ -66,6 +66,7 @@
           フォルダを選択する
         </a>
       </div>
+      @if(!($stockFolderIds[$i][0] === null))
       <div class="d-flex align-items-center stockFolders-currentFolder">
         <p>
           フォルダー：
@@ -74,6 +75,7 @@
           {{ $stockNames[$i][0] }}
         </a>
       </div>
+      @endif
     </div>
   @endif
 

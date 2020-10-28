@@ -96,7 +96,7 @@ class StockFolderController extends Controller
         $user = Auth::user();
         $userId = Auth::user()->id;
 
-        $stockFolders = $stockFolder::where('user_id', $userId)->get();
+        $stockFolders = $stockFolder::where('user_id', $userId)->paginate(10);
 
         return view('stock_folders.index', [
             'user' => $user,
