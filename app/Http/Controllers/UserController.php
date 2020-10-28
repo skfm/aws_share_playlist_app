@@ -52,27 +52,15 @@ class UserController extends Controller
 
         $user->name = $request->name;
 
-        if ($request->description)
-        {
-            $user->description = $request->description;
-        }
+        $user->description = $request->description;
 
-        if ($request->insta_url)
-        {
-            $user->insta_url = $request->insta_url;
-        }
+        $user->insta_url = $request->insta_url;
 
-        if ($request->youteb_url)
-        {
-            $user->youtube_url = $request->youtube_url;
-        }
+        $user->youtube_url = $request->youtube_url;
 
-        if ($request->twitter_url)
-        {
-            $user->twitter_url = $request->twitter_url;
-        }
+        $user->twitter_url = $request->twitter_url;
 
-        if ($request->file('image_path')->isValid())
+        if ($request->file('image_path'))
         {
             $disk = Storage::disk('s3');
             $fileName = $disk->put('', $request->file('image_path'));
