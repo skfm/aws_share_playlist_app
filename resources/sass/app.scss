@@ -178,6 +178,7 @@ html {
       color: #fff;
       display: block;
       width: 100%;
+      font-size: 1.4rem;
     }
 
     .btn._submit {
@@ -214,6 +215,7 @@ html {
       margin: 16px auto 0;
       color: #fff;
       text-align: center;
+      font-size: 1.4rem;
     }
 
     .copy {
@@ -431,6 +433,12 @@ html {
     max-width: 240px;
     margin: 16px auto 24px;
     background-color: $main-color;
+  }
+
+  // ログイン、新規登録
+  .otherLink {
+    font-size: 1.4rem;
+    color: $main-font-color;
   }
 }
 

@@ -8,7 +8,7 @@
     <div class="row">
       <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
         <div class="card mt-3">
-          <div class="card-body text-center">
+          <div class="card-body">
             <h2 class="card-title text-center mt-2">ユーザー登録</h2>
 
             <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-danger">
@@ -40,8 +40,8 @@
                 <button class="btn mt-2 mb-2" type="submit">ユーザー登録</button>
               </form>
 
-              <div class="mt-0">
-                <a href="{{ route('login') }}" class="card-text">ログインはこちら</a>
+              <div class="mt-0 text-center">
+                <a href="{{ route('login') }}" class="otherLink">ログインはこちら</a>
               </div>
             </div>
           </div>
