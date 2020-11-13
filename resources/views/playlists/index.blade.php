@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '記事一覧')
+@section('title', 'SPY')
 
 @section('content')
   @include('nav')
@@ -8,7 +8,7 @@
   <div class="container copy">
     <h2 class="copy-title">
       <p>
-        SharePlaylistはみんなにみて欲しいYouTube動画のプレイリストを共有するサービスです。
+        SPYはみんなにみて欲しいYouTube動画のプレイリストを共有するサービスです。
       </p>
     </h2>
 

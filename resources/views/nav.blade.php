@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark">
 
-  <a class="navbar-brand" href="/"><i class="fab fa-creative-commons-share mr-1"></i>SPL</a>
+  <a class="navbar-brand" href="/"><i class="fab fa-creative-commons-share mr-1"></i>SPY</a>
 
   <ul class="navbar-nav ml-auto">
 
