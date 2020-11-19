@@ -1,61 +1,95 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+![SPY](https://user-images.githubusercontent.com/44170627/99727163-e8271c80-2afa-11eb-8922-ca297f8c99f2.png)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# SPY(Share Playlist Youtube)
+「SYP」はYouTubeで作成したプレイリストを共有するサイトです。
+プレイリストはYouTubeで為になった複数の動画をジャンルごとにまとめて共有できるサービスです。
+しかしあまり利用されていないと思い、それ専用の共有サイトを作成しました。
+またYouTubeの検索アルゴリズムに引っかかりづらい優良動画を広める目的も兼ねて制作しました。
 
-## About Laravel
+## 本番環境　テストユーザー
+- TOPページ： [https://spyknwledge.com/](URL "https://spyknwledge.com/")
+- ログインページ： [https://spyknwledge.com/login](URL "https://spyknwledge.com/login")
+- メールアドレス：test@test.com
+- パスワード：12345678
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## SPYのターゲット
+- プログラミング、筋トレ、ダイエットなどの情報を調べているユーザー
+- 自分が使用してみてよかった体験などをたくさんの人に伝えたいユーザー
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## SPYの効果
+- ダイエットなどで実際におこない効果があった動画などを調べることができる
+- 検索アルゴリズムで上位に入っていないが優良な動画を見つけられる可能性が上がる
+- YouTubeのプレイリストの利用率向上
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 使用技術
+- HTML
+- CSS(scss,MDBootstrap)
+- JavaScript(jQuery、Vue)
+- PHP7.3(Laravel7.27.0)
+- nginx
+- MYSQL 5.7
+- AWS S3
+- AWS EC2
+- AWS Route53
+- Docker(Laradock)
 
-## Learning Laravel
+## ER図
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## 実装機能(抜粋)
+以下にSPYで実装した機能をお伝えします。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### プレイリスト投稿機能
 
-### Premium Partners
+![記事投稿](https://user-images.githubusercontent.com/44170627/99727488-6257a100-2afb-11eb-8b84-4d44f6160a05.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+ヘッダー部分の「投稿する」からYouTubeのプレイリストを投稿します。
+投稿プレイリストにはタグを5つまで選択できます。
+またカテゴリーを選んで投稿することも可能です。
 
-## Contributing
+### ユーザー情報登録機能
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![ユーザー編集](https://user-images.githubusercontent.com/44170627/99728482-d5ade280-2afc-11eb-9965-86daaf7eeecf.png)
 
-## Code of Conduct
+ユーザー情報はヘッダーの「プロフィール編集」から登録が可能です。
+名前、紹介文、主要なSNSをやっているユーザーはSNSを登録できます。
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ユーザーページで下記のように表示されます。
 
-## Security Vulnerabilities
+![ユーザーページ](https://user-images.githubusercontent.com/44170627/99728493-d9da0000-2afc-11eb-855c-06dbed450094.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 検索機能
 
-## License
+![検索](https://user-images.githubusercontent.com/44170627/99729066-b95e7580-2afd-11eb-84f4-9a4e962a8713.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+タグとタイトルから部分一致での検索ができます。
+
+### ストック機能とストックしたプレイリストのフォルダ分け機能
+
+![ストックフォルダー詳細](https://user-images.githubusercontent.com/44170627/99730139-4950ef00-2aff-11eb-980a-44cd06d7069a.png)
+
+投稿されているプレイリスト内のアイコン(上記画像の赤枠部分)を
+クリックすることでプレイリストの保存が可能です。
+
+ストックしたプレイリストはユーザーページから確認できます。
+またフォルダを作成し、ストックしたプレイリストにフォルダを割り当てることで
+ユーザー任意のカテゴリー別にプレイリストを確認することも可能となります。
+
+### ランキング機能
+
+![人気順](https://user-images.githubusercontent.com/44170627/99730645-2a069180-2b00-11eb-8688-4e08f965190e.png)
+
+TOPページの人気のプレイリスト部分はストックされた数が
+多いプレイリスト順に表示されるようしています。
+
+### 並び替え機能
+
+![並び替え](https://user-images.githubusercontent.com/44170627/99731065-b3b65f00-2b00-11eb-86aa-888c25ab3faa.png)
+
+カテゴリー一覧ページ、タグまたはタイトル検索結果一覧ページ内では
+プレイリストを並び替えることができます。
+並び替えは「ストックのされた数が多い順、投稿日が新しい順、投稿日が古い順です。
+
+
+
