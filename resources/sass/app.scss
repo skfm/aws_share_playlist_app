@@ -295,13 +295,21 @@ html {
         text-align: center;
         border-radius: 10px;
         max-width: 140px;
-        padding: 16px 0;
 
         a {
           font-size: 1.4rem;
           display: block;
-          padding: 8px 0 0;
+          padding: 16px 0;
           color: $main-font-color;
+
+          &:hover {
+            color: $main-color;
+          }
+
+          span {
+            margin-top: 8px;
+            display: block;
+          }
         }
       }
     }
