@@ -16,7 +16,7 @@
     </div>
 
     <div class="formResult mt-3">
-      <form action="{{ url('/playlists/serch/tag')}}" method="post">
+      <form action="{{ url('/playlists/search/tag')}}">
         {{ csrf_field()}}
         {{method_field('get')}}
         <div class="form-group">
@@ -29,7 +29,7 @@
             <option value="" selected></option>
             <option value="new">新しい順</option>
             <option value="old">古い順</option>
-            <option value="allsotck">ストックが多い順</option>
+            <option value="allstock">ストックが多い順</option>
           </select>
         </div>
         <button type="submit" class="btn btn-search">検索</button>

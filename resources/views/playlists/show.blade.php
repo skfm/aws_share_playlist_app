@@ -9,7 +9,7 @@
     <div class="card mt-3 playlistsCard">
       <div class="card-body d-flex flex-row align-items-center pb-2">
         @if ($playlist->user->image_path)
-          <img src="{{ asset('storage/avatar/'. $playlist->user->image_path) }}">
+          <img src="{{ Storage::disk('s3')->url($playlist->user->image_path) }}">
         @else
           <i class="fas fa-user-circle fa-2x"></i>
         @endif

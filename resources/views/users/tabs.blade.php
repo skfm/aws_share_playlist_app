@@ -8,7 +8,7 @@
   <li class="nav-item">
     <a class="nav-link {{ $hasStocks ? 'active' : '' }}"
        href="{{ route('users.stocks', ['name' => $user->name]) }}">
-      いいね
+      ストック
     </a>
   </li>
 </ul>

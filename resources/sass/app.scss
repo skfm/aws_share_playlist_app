@@ -126,10 +126,22 @@ html {
 
         a {
           color: $main-font-color;
+          &:hover {
+            color: $main-color!important;
+          }
         }
+
 
         .category-wrap {
           font-size: 1.2rem;
+
+          a:hover {
+            color: $main-color!important;
+          }
+
+          & + a {
+            pointer-events: none;
+          }
         }
 
         .playlist-number {
@@ -141,8 +153,18 @@ html {
             font-size: 1.6rem;
           }
 
+          & > a {
+            pointer-events: none;
+          }
+
           .card-text {
             font-size: 1.4rem;
+            pointer-events: initial;
+
+            &:hover,
+            a:hover {
+              color: $main-color!important;
+            }
           }
         }
 
@@ -216,7 +238,6 @@ html {
         }
       }
     }
-
     // 共通部分終わり
 
     // TOPページ

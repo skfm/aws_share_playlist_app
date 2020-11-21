@@ -154,7 +154,7 @@ class PlaylistController extends Controller
                 $playlists = $query->orderBy('created_at','desc')->paginate(10);
                 break;
 
-            case "allStock":
+            case "allstock":
                 $playlists = playlist::withCount('stocks')->where('title','like', "%$keyword%")->orderBy('stocks_count', 'desc')->paginate(10);
                 break;
 
@@ -194,7 +194,7 @@ class PlaylistController extends Controller
                 $playlists = $playlists->orderBy('created_at','asc')->paginate(10);
                 break;
 
-            case "allStock":
+            case "allstock":
                 $playlists = playlist::whereHas('tags', function($query) use ($keyword) {
                     $query->where('tags.name','like', "%$keyword%");
                 })->withCount('stocks')

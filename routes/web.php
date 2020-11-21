@@ -64,6 +64,7 @@ Route::prefix('users')->name('users.')->group(function () {
 });
 
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
+Route::post('/tags/{name}', 'TagController@sortTag')->name('tags.sort');
 
 Route::get('/categories/{title}', 'CategoryController@show')->name('categories.show');
 

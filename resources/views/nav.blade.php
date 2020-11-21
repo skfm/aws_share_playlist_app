@@ -38,7 +38,7 @@
               <option value="" selected></option>
               <option value="new">新しい順</option>
               <option value="old">古い順</option>
-              <option value="allSotck">ストックが多い順</option>
+              <option value="allstock">ストックが多い順</option>
             </select>
           </div>
           <button type="submit" class="btn">検索</button>
@@ -54,7 +54,7 @@
               <option value="" selected></option>
               <option value="new">新しい順</option>
               <option value="old">古い順</option>
-              <option value="allSotck">ストックが多い順</option>
+              <option value="allstock">ストックが多い順</option>
             </select>
           </div>
           <button type="submit" class="btn">検索</button>
