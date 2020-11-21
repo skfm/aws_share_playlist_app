@@ -83,14 +83,16 @@
             {{ $playlist->title }}
           </a>
         </h3>
+        @if(isset( $playlist->category->title ))
         <div class="d-flex align-items-center category-wrap">
           <p class="mb-0">
             カテゴリー：
           </p>
           <a class="text-muted" href="{{ route('categories.show', ['title' => $playlist->category->title]) }}" class="card-title">
-            {{ $playlist->category->title ?? ''}}
+            {{ $playlist->category->title }}
           <a/>
         </div>
+        @endif
         <div class="card-content mt-2">
           <p class="card-title mb-0">
             プレイリストの説明

@@ -26,7 +26,7 @@ class PlaylistRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'description' => 'required|max:1000',
-            'url' => 'required',
+            'url' => ['required', 'url', 'regex:/youtube.com\/playlist/'],
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
@@ -38,6 +38,13 @@ class PlaylistRequest extends FormRequest
             'description' => 'プレイリストの説明',
             'url' => 'プレイリストURL',
             'tags' => 'タグ',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "url.regex" => "YouTubeプレイリストのURLを指定してください。"
         ];
     }
 

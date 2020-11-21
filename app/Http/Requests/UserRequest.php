@@ -25,7 +25,10 @@ class UserRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'image_path'=>'image|mimes:jpeg,png,jpg,gif|',
+            'image_path' => 'image|mimes:jpeg,png,jpg,gif|',
+            'insta_url' => ['nullable', 'url', 'regex:/instagram.com/'],
+            'youtube_url' => ['nullable', 'url', 'regex:/youtube.com\/channel/'],
+            'twitter_url' => ['nullable', 'url', 'regex:/twitter.com/'],
         ];
     }
 
@@ -41,6 +44,10 @@ class UserRequest extends FormRequest
         return [
             "image" => "指定されたファイルが画像ではありません。",
             "mines" => "指定された拡張子（PNG/JPG/GIF）ではありません。",
+            "url" => "URLを入力してください",
+            "insta_url.regex" => "Instagramの正しいURLを指定してください。",
+            "youtube_url.regex" => "YouTubeの正しいURLを指定してください。",
+            "twitter.regex" => "Twitterの正しいURLを指定してください。"
         ];
     }
 }
