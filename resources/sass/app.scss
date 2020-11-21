@@ -139,8 +139,12 @@ html {
             color: $main-color!important;
           }
 
-          & + a {
-            pointer-events: none;
+          & + a:hover {
+            color: $main-font-color!important;
+
+            i {
+              color: #f44336!important;
+            }
           }
         }
 
