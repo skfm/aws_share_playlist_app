@@ -8,7 +8,7 @@
     <div class="row">
       <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
         <div class="card mt-3">
-          <div class="card-body text-center">
+          <div class="card-body">
             <h2 class="card-title text-center mt-2">ユーザー登録</h2>
 
             @include('error_card_list')
@@ -26,7 +26,7 @@
                   <label for="email">メールアドレス</label>
                   <input class="form-control" type="text" id="email" name="email" value="{{ $email }}" disabled>
                 </div>
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
+                <button class="btn mt-2 mb-2" type="submit">ユーザー登録</button>
               </form>
             </div>
           </div>
