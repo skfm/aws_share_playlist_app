@@ -36,6 +36,7 @@
                 <div class="md-form">
                   <label for="password_confirmation">パスワード(確認)</label>
                   <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" required>
+                  <small>パスワードは8文字以上で入力してください</small>
                 </div>
                 <button class="btn mt-2 mb-2" type="submit">ユーザー登録</button>
               </form>
