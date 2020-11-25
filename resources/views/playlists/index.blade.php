@@ -17,11 +17,13 @@
       <p>YouTubeの検索では上位にヒットしにくい隠れた名動画を探してみせんか？</p>
     </p>
 
+    @guest
     <div class="btn-wrap">
       <a href="{{ route('register') }}" class="copy-btn btn">
         新規登録
       </a>
     </div>
+    @endguest
 
   </div>
 
