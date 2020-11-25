@@ -91,6 +91,40 @@ html {
       &-title {
         margin-top: 16px;
       }
+
+      .navCategories {
+        &-title {
+          font-size: $main-font-color;
+          color: $main-font-color;
+        }
+
+        &-list {
+          width: 202px;
+        }
+
+        &-item {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          a {
+            font-size: 1.4rem;
+            padding: 4px 0;
+            margin-top: 8px;
+            color: $main-font-color;
+
+            &:hover {
+              color: $main-color;
+            }
+          }
+
+          &:last-child {
+            a {
+              padding-bottom: 0;
+            }
+          }
+        }
+      }
     }
 
     // フッター
@@ -413,6 +447,10 @@ html {
       color: $main-color;
       font-size: $font-size-base;
       margin-right: 8px;
+
+      @media (max-width: 374px) {
+        font-size: 1.4rem;
+      }
     }
   }
 
