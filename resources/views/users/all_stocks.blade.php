@@ -12,8 +12,14 @@
       <div class="folderLink-wrap d-flex flex-row">
 
         @if( Auth::id() === $user->id )
+          <a href="{{ route('users.all_stocks', [
+            'playlists' => $playlists,
+            'name' => $user->name,
+        ]) }}">
+            ストック一覧
+          </a>
           <a href="{{ route('stock_folders.create') }}">
-            フォルダを作成する
+            フォルダ作成
           </a>
           <a href="{{ route('stock_folders.index') }}">
             フォルダ一覧

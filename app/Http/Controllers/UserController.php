@@ -119,7 +119,7 @@ class UserController extends Controller
             $stockFolderId = $playlist->stocks_id->where('user_id', $userId)->pluck('stock_folder_id');
             $stockFolderIds->push($stockFolderId);
 
-            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');;
+            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');
             $stockNames->push($stockName);
         }
 
