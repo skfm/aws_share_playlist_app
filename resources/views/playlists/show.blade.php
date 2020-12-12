@@ -77,7 +77,7 @@
         </div>
       @endif
 
-      <div class="card-body pt-0">
+      <div class="card-body pt-2">
         <h3 class="h4 card-title mb-1">
           <a href="{{ route('playlists.show', ['playlist' => $playlist]) }}">
             {{ $playlist->title }}
@@ -93,25 +93,41 @@
           <a/>
         </div>
         @endif
+        @if(isset( $playlist->thumbnail_url ))
+        <div class="card-thumbnail mt-3">
+          <a target="_blank" href="https://www.youtube.com/{{ $playlist->url }}" class="">
+            <img src="{{ $playlist->thumbnail_url }}" alt="YouTube サムネイル">
+          </a>
+          <small>
+            ※画像をクリックするとYouTubeプレイリストに遷移します
+          </small>
+        </div>
+        @else
+        <div class="card-content mt-3">
+          <div class="movie-wrap">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ str_replace('watch?v=', '', $playlist->url) }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        @endif
+        @if(isset( $playlist->description ))
         <div class="card-content mt-2">
           <p class="card-title mb-0">
-            プレイリストの説明
+            説明
           </p>
           <p class="card-text">
             {{ $playlist->description }}
           </p>
         </div>
-        <div class="card-content mt-2">
-          <p class="card-title mb-0">
-            プレイリストのURL
-          </p>
-          <a href="{{ $playlist->url }}" class="card-text" target="_blank">
-            {{ $playlist->url }}
-          </a>
-        </div>
-        <playlist-url-copy-button
-          :post-url='@json($playlist->url)'
+        @endif
+
+        @if(isset( $playlist->thumbnail_url ))
+          <div style="display: none;">
+            {{ $url =  "https://www.youtube.com/$playlist->url" }}
+          </div>
+          <playlist-url-copy-button
+          :post-url='@json($url)'
         ></playlist-url-copy-button>
+        @endif
         <playlist-stock
           :initial-is-stocked-by='@json($playlist->isStockedBy(Auth::user()))'
           :initial-count-stocks='@json($playlist->count_stocks)'
@@ -121,7 +137,7 @@
         </playlist-stock>
         @foreach($playlist->tags as $tag)
         @if($loop->first)
-          <div class="tags pt-1">
+          <div class="tags pt-2">
             <div class="card-text line-height">
         @endif
               <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 mr-1 mt-1 text-muted">
@@ -132,6 +148,7 @@
           </div>
         @endif
         @endforeach
+        </div>
       </div>
     </div>
 

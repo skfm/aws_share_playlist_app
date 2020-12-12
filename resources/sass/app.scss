@@ -199,7 +199,6 @@ html {
             font-size: 1.4rem;
             pointer-events: initial;
 
-            &:hover,
             a:hover {
               color: $main-color!important;
             }
@@ -208,6 +207,33 @@ html {
 
         .copyBtn-wrap {
           margin-top: 8px;
+        }
+
+        .card-thumbnail {
+          a {
+            display: block;
+
+            img {
+              width: 100%;
+              height: auto;
+              border-radius: initial;
+            }
+          }
+        }
+
+        .movie-wrap {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+
+          iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
         }
       }
     }
@@ -255,6 +281,7 @@ html {
     .btn._submit {
       font-size: 1.4rem;
       margin-bottom: 32px;
+      margin-top: 24px;
     }
 
     .btn:hover {

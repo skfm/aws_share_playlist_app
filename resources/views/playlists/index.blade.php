@@ -8,7 +8,7 @@
   <div class="container copy">
     <h2 class="copy-title">
       <p>
-        SPYはみんなにみて欲しいYouTube動画のプレイリストを共有するサービスです。
+        SPYはみんなにみて欲しいYouTube動画やYouTubeプレイリストを共有するサービスです。
       </p>
     </h2>
 

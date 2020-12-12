@@ -1,7 +1,14 @@
 @csrf
-<div class="md-form">
-  <input type="text" name="title" class="form-control" required value="{{ $playlist->title ?? old('title') }}">
-  <label>タイトル</label>
+<div class="form-group">
+  <label>URL ID<span>(必須)</span></label>
+  <input type="text" name="url" class="form-control" required value="{{ $playlist->url ?? old('url') }}">
+  <small>※プレイリストの場合「https://www.youtube.com/playlist?list=PLB1PuqtbwVQnHvT_x4qkbTxSPa5」の「playlist?list=PLB1PuqtbwVQnHvT_x4qkbTxSPa5」</small><br>
+  <small>※動画の場合「https://www.youtube.com/watch?v=MPbUaIZAaeA」の「watch?v=MPbUaIZAaeA」</small><br>
+  <small>※いずれかのIDを入力してください</small>
+</div>
+<div class="form-group">
+  <label>説明<span>(任意)</span></label>
+  <textarea name="description" class="form-control" rows="6">{{ $playlist->description ?? old('description') }}</textarea>
 </div>
 <div class="form-group">
   <playlist-tags-input
@@ -10,16 +17,8 @@
   >
   </playlist-tags-input>
 </div>
-<div class="form-group">
-  <label>プレイリストの説明</label>
-  <textarea name="description" required class="form-control" rows="10">{{ $playlist->description ?? old('description') }}</textarea>
-</div>
-<div class="md-form">
-  <input type="text" name="url" class="form-control" required value="{{ $playlist->url ?? old('url') }}">
-  <label>youtubeのプレイリストURL</label>
-</div>
 <div class="mb-3 category-form">
-  <label>カテゴリー(該当するものがなければ未選択可)</label>
+  <label>カテゴリー(該当するものがあれば選択)</label>
   <select name="category_id" class="form-control">
     <option value=""></option>
     <option value="1">プログラミング</option>

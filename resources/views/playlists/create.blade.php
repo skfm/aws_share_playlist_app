@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card mt-3">
-          <div class="card-body pt-0">
+          <div class="card-body pt-5">
             @include('error_card_list')
             <div class="card-text">
               <form method="POST" action="{{ route('playlists.store') }}">
