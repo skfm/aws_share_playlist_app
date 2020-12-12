@@ -24,9 +24,7 @@ class PlaylistRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
-            'description' => 'required|max:1000',
-            'url' => ['required', 'url', 'regex:/youtube.com\/playlist/'],
+            'url' => ['required', 'regex:/(^watch\?v=*|^playlist\?list=*)/'],
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
@@ -34,9 +32,8 @@ class PlaylistRequest extends FormRequest
     public function attributes()
     {
         return [
-            'title' => 'プレイリストタイトル',
-            'description' => 'プレイリストの説明',
-            'url' => 'プレイリストURL',
+            'description' => '説明',
+            'url' => 'URL ID',
             'tags' => 'タグ',
         ];
     }
@@ -44,7 +41,7 @@ class PlaylistRequest extends FormRequest
     public function messages()
     {
         return [
-            "url.regex" => "YouTubeプレイリストのURLを指定してください。"
+            "url.regex" => "正しいURL IDを入力してください"
         ];
     }
 

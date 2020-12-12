@@ -6,7 +6,8 @@ use App\Tag;
 use App\Http\Requests\PlaylistRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Google_Client;
+use Google_Service_YouTube;
 class PlaylistController extends Controller
 {
     public function __construct()
@@ -41,8 +42,55 @@ class PlaylistController extends Controller
 
     public function store(PlaylistRequest $request, Playlist $playlist)
     {
+        $client = new Google_Client();
+        $client->setDeveloperKey(env('GOOGLE_API_KEY'));
+
+        $youtube = new Google_Service_YouTube($client);
+
         $playlist->fill($request->all());
         $playlist->user_id = $request->user()->id;
+
+        $url = $request->url;
+
+        if(strpos($url,'watch?v=') !== false) {
+            $url = str_replace('watch?v=', '', $url);
+
+            $items = $youtube->videos->listVideos('snippet', [
+                'id' => $url,
+            ]);
+
+            $snippets = collect($items->getItems())->pluck('snippet')->all();
+
+            if (empty($snippets[0]->title)) {
+                $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
+                return redirect()->back()->withInput()->withErrors($error);
+            }
+
+            $playlist->title = $snippets[0]->title;
+
+        } elseif(strpos($url,'playlist?list=') !== false) {
+            $url = str_replace('playlist?list=', '', $url);
+
+            $items = $youtube->playlists->listPlaylists('snippet', [
+                'id' => $url,
+            ]);
+
+            $snippets = collect($items->getItems())->pluck('snippet')->all();
+
+            if (empty($snippets[0]->title)) {
+                $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
+                return redirect()->back()->withInput()->withErrors($error);
+            }
+
+            $playlist->title = $items[0]->snippet->title;
+
+            if (empty($request->description)) {
+                $playlist->description = $items[0]->snippet->description;
+            }
+
+            $playlist->thumbnail_url = $items[0]->snippet->thumbnails->maxres->url;
+        }
+
         $playlist->save();
 
         $request->tags->each(function ($tagName) use ($playlist) {
@@ -78,7 +126,56 @@ class PlaylistController extends Controller
 
     public function update(PlaylistRequest $request, Playlist $playlist)
     {
-        $playlist->fill($request->all())->save();
+        $client = new Google_Client();
+        $client->setDeveloperKey(env('GOOGLE_API_KEY'));
+
+        $youtube = new Google_Service_YouTube($client);
+
+        $playlist->fill($request->all());
+        $playlist->user_id = $request->user()->id;
+
+        $url = $request->url;
+
+        if(strpos($url,'watch?v=') !== false) {
+            $url = str_replace('watch?v=', '', $url);
+
+            $items = $youtube->videos->listVideos('snippet', [
+                'id' => $url,
+            ]);
+
+            $snippets = collect($items->getItems())->pluck('snippet')->all();
+
+            if (empty($snippets[0]->title)) {
+                $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
+                return redirect()->back()->withInput()->withErrors($error);
+            }
+
+            $playlist->title = $snippets[0]->title;
+
+        } elseif(strpos($url,'playlist?list=') !== false) {
+            $url = str_replace('playlist?list=', '', $url);
+
+            $items = $youtube->playlists->listPlaylists('snippet', [
+                'id' => $url,
+            ]);
+
+            $snippets = collect($items->getItems())->pluck('snippet')->all();
+
+            if (empty($snippets[0]->title)) {
+                $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
+                return redirect()->back()->withInput()->withErrors($error);
+            }
+
+            $playlist->title = $items[0]->snippet->title;
+
+            if (empty($request->description)) {
+                $playlist->description = $items[0]->snippet->description;
+            }
+
+            $playlist->thumbnail_url = $items[0]->snippet->thumbnails->maxres->url;
+        }
+
+        $playlist->save();
 
         $playlist->tags()->detach();
         $request->tags->each(function ($tagName) use ($playlist) {
