@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Playlist;
-use App\Tag;
 use App\Http\Requests\PlaylistRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Google_Client;
-use Google_Service_YouTube;
+use App\Services\PlaylistServices;
 class PlaylistController extends Controller
 {
     public function __construct()
@@ -18,10 +16,7 @@ class PlaylistController extends Controller
     public function index()
     {
         $playlists = playlist::withCount('stocks')->orderBy('stocks_count', 'desc')->paginate(5);
-
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $allTagNames = PlaylistServices::getAllTags();
 
         return view('playlists.index', [
             'playlists' => $playlists,
@@ -31,9 +26,7 @@ class PlaylistController extends Controller
 
     public function create()
     {
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $allTagNames = PlaylistServices::getAllTags();
 
         return view('playlists.create', [
             'allTagNames' => $allTagNames,
@@ -42,64 +35,43 @@ class PlaylistController extends Controller
 
     public function store(PlaylistRequest $request, Playlist $playlist)
     {
-        $client = new Google_Client();
-        $client->setDeveloperKey(env('GOOGLE_API_KEY'));
-
-        $youtube = new Google_Service_YouTube($client);
-
         $playlist->fill($request->all());
         $playlist->user_id = $request->user()->id;
 
         $url = $request->url;
 
         if(strpos($url,'watch?v=') !== false) {
-            $url = str_replace('watch?v=', '', $url);
-
-            $items = $youtube->videos->listVideos('snippet', [
-                'id' => $url,
-            ]);
-
-            $snippets = collect($items->getItems())->pluck('snippet')->all();
+            $snippets = PlaylistServices::getYoutubeVideoDate($url);
 
             if (empty($snippets[0]->title)) {
                 $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
                 return redirect()->back()->withInput()->withErrors($error);
+            } else {
+                $playlist->title = $snippets[0]->title;
             }
-
-            $playlist->title = $snippets[0]->title;
 
         } elseif(strpos($url,'playlist?list=') !== false) {
-            $url = str_replace('playlist?list=', '', $url);
-
-            $items = $youtube->playlists->listPlaylists('snippet', [
-                'id' => $url,
-            ]);
-
-            $snippets = collect($items->getItems())->pluck('snippet')->all();
+            $snippets = PlaylistServices::getYoutubeListDate($url);
 
             if (empty($snippets[0]->title)) {
                 $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
                 return redirect()->back()->withInput()->withErrors($error);
+            } else {
+                $playlist->title = $snippets[0]->title;
+                $playlist->thumbnail_url = $snippets[0]->thumbnails->maxres->url;
+
+                if (empty($request->description)) {
+                    $playlist->description = $snippets[0]->description;
+                }
             }
-
-            $playlist->title = $items[0]->snippet->title;
-
-            if (empty($request->description)) {
-                $playlist->description = $items[0]->snippet->description;
-            }
-
-            $playlist->thumbnail_url = $items[0]->snippet->thumbnails->maxres->url;
         }
 
         $playlist->save();
 
-        $request->tags->each(function ($tagName) use ($playlist) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $playlist->tags()->attach($tag);
-        });
+        PlaylistServices::createAndAttachTags($request,$playlist);
 
         $user = Auth::user();
-        $playlists = $user->playlists->sortByDesc('created_at')->take(3);
+        $playlists = PlaylistServices::getPlaylistsOfUser($user,3);
 
         return view('users.show', [
             'user' => $user,
@@ -113,9 +85,7 @@ class PlaylistController extends Controller
             return ['text' => $tag->name];
         });
 
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $allTagNames = PlaylistServices::getAllTags();
 
         return view('playlists.edit',[
             'playlist' => $playlist,
@@ -126,65 +96,44 @@ class PlaylistController extends Controller
 
     public function update(PlaylistRequest $request, Playlist $playlist)
     {
-        $client = new Google_Client();
-        $client->setDeveloperKey(env('GOOGLE_API_KEY'));
-
-        $youtube = new Google_Service_YouTube($client);
-
         $playlist->fill($request->all());
         $playlist->user_id = $request->user()->id;
 
         $url = $request->url;
 
         if(strpos($url,'watch?v=') !== false) {
-            $url = str_replace('watch?v=', '', $url);
-
-            $items = $youtube->videos->listVideos('snippet', [
-                'id' => $url,
-            ]);
-
-            $snippets = collect($items->getItems())->pluck('snippet')->all();
+            $snippets = PlaylistServices::getYoutubeVideoDate($url);
 
             if (empty($snippets[0]->title)) {
                 $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
                 return redirect()->back()->withInput()->withErrors($error);
+            } else {
+                $playlist->title = $snippets[0]->title;
             }
-
-            $playlist->title = $snippets[0]->title;
 
         } elseif(strpos($url,'playlist?list=') !== false) {
-            $url = str_replace('playlist?list=', '', $url);
-
-            $items = $youtube->playlists->listPlaylists('snippet', [
-                'id' => $url,
-            ]);
-
-            $snippets = collect($items->getItems())->pluck('snippet')->all();
+            $snippets = PlaylistServices::getYoutubeListDate($url);
 
             if (empty($snippets[0]->title)) {
                 $error = "正しくURL IDが設定されていませんでした。再度、確認して入力してください。";
                 return redirect()->back()->withInput()->withErrors($error);
+            } else {
+                $playlist->title = $snippets[0]->title;
+                $playlist->thumbnail_url = $snippets[0]->thumbnails->maxres->url;
+
+                if (empty($request->description)) {
+                    $playlist->description = $snippets[0]->description;
+                }
             }
-
-            $playlist->title = $items[0]->snippet->title;
-
-            if (empty($request->description)) {
-                $playlist->description = $items[0]->snippet->description;
-            }
-
-            $playlist->thumbnail_url = $items[0]->snippet->thumbnails->maxres->url;
         }
 
         $playlist->save();
 
         $playlist->tags()->detach();
-        $request->tags->each(function ($tagName) use ($playlist) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $playlist->tags()->attach($tag);
-        });
+        PlaylistServices::createAndAttachTags($request,$playlist);
 
         $user = Auth::user();
-        $playlists = $user->playlists->sortByDesc('created_at')->take(3);
+        $playlists = PlaylistServices::getPlaylistsOfUser($user,3);
 
         return view('users.show', [
             'user' => $user,
@@ -197,7 +146,7 @@ class PlaylistController extends Controller
         $playlist->delete();
 
         $user = Auth::user();
-        $playlists = $user->playlists->sortByDesc('created_at')->take(3);
+        $playlists = PlaylistServices::getPlaylistsOfUser($user,3);
 
         return view('users.show', [
             'user' => $user,
@@ -236,33 +185,10 @@ class PlaylistController extends Controller
     public function searchTitle(Request $request)
     {
         $keyword = $request->keyword;
-
         $sort = $request->input('sort');
-
         $query = playlist::query();
-        $query = $query->where('title','like', "%$keyword%");
-
-        switch ($sort) {
-            case "new":
-                $playlists = $query->orderBy('created_at','desc')->paginate(10);
-                break;
-
-            case "old":
-                $playlists = $query->orderBy('created_at','desc')->paginate(10);
-                break;
-
-            case "allstock":
-                $playlists = playlist::withCount('stocks')->where('title','like', "%$keyword%")->orderBy('stocks_count', 'desc')->paginate(10);
-                break;
-
-            default:
-                $playlists = $query->orderBy('created_at','desc')->paginate(10);
-
-        }
-
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $playlists = PlaylistServices::getPlaylistsSortTitle($keyword,$sort,$query);
+        $allTagNames = PlaylistServices::getAllTags();
 
         return view('playlists.search.title', [
             'playlists' => $playlists,
@@ -275,37 +201,12 @@ class PlaylistController extends Controller
     public function searchTag(Request $request)
     {
         $keyword = $request->keyword;
-
         $sort = $request->input('sort');
-
         $playlists = playlist::whereHas('tags', function($query) use ($keyword) {
             $query->where('tags.name','like', "%$keyword%");
         });
-
-        switch ($sort) {
-            case "new":
-                $playlists = $playlists->orderBy('created_at','desc')->paginate(10);
-                break;
-
-            case "old":
-                $playlists = $playlists->orderBy('created_at','asc')->paginate(10);
-                break;
-
-            case "allstock":
-                $playlists = playlist::whereHas('tags', function($query) use ($keyword) {
-                    $query->where('tags.name','like', "%$keyword%");
-                })->withCount('stocks')
-                ->orderby('stocks_count', 'desc')->paginate(10);
-                break;
-
-            default:
-                $playlists = $playlists->orderBy('created_at','desc')->paginate(10);
-
-        }
-
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        $playlists = PlaylistServices::getPlaylistsSortTag($keyword,$sort,$playlists);
+        $allTagNames = PlaylistServices::getAllTags();
 
         return view('playlists.search.tag', [
             'playlists' => $playlists,

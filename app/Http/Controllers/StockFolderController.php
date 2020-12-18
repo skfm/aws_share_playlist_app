@@ -5,16 +5,15 @@ use App\StockFolder;
 use App\Http\Requests\StockFolderRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\StockServices;
 
 class StockFolderController extends Controller
 {
     public function index(StockFolder $stockFolder)
     {
-
         $user = Auth::user();
         $userId = Auth::user()->id;
-
-        $stockFolders = $stockFolder::where('user_id', $userId)->paginate(10);
+        $stockFolders = StockServices::getStockFolders($stockFolder, $userId);
 
         return view('stock_folders.index', [
             'stockFolders' => $stockFolders,
@@ -25,24 +24,13 @@ class StockFolderController extends Controller
     public function show(StockFolder $stockFolder)
     {
         $user = Auth::user();
-        $userId = $user->id;
-        $stockFolders = $user->stock_folders->all();
         $playlistIds = $stockFolder->stocks->pluck('playlist_id')->all();
         $playlists = $user->stocks->whereIn('id', $playlistIds)->all();
-        $stockIds = collect([]);
-        $stockFolderIds = collect([]);
-        $stockNames = collect([]);
-
-        foreach ($playlists as $playlist) {
-            $stockId = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
-            $stockIds->push($stockId);
-
-            $stockFolderId = $playlist->stocks_id->where('user_id', $userId)->pluck('stock_folder_id');
-            $stockFolderIds->push($stockFolderId);
-
-            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');;
-            $stockNames->push($stockName);
-        }
+        $getStockDates = StockServices::getStockDates($playlists, $user);
+        $stockFolders = $getStockDates[0];
+        $stockIds = $getStockDates[1];
+        $stockFolderIds = $getStockDates[2];
+        $stockNames = $getStockDates[3];
 
         $count = 0;
 
@@ -72,7 +60,6 @@ class StockFolderController extends Controller
     public function update(StockFolderRequest $request, StockFolder $stockFolder)
     {
         $stockFolder->fill($request->all())->save();
-
         return redirect()->route('stock_folders.index');
     }
 
@@ -95,8 +82,7 @@ class StockFolderController extends Controller
 
         $user = Auth::user();
         $userId = Auth::user()->id;
-
-        $stockFolders = $stockFolder::where('user_id', $userId)->paginate(10);
+        $stockFolders = StockServices::getStockFolders($stockFolder, $userId);
 
         return view('stock_folders.index', [
             'user' => $user,

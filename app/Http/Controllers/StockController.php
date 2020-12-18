@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StockRequest;
 use App\StockFolder;
 use Illuminate\Support\Facades\Auth;
+use App\Services\StockServices;
 
 class StockController extends Controller
 {
@@ -21,41 +22,23 @@ class StockController extends Controller
 
     public function update(StockRequest $request, Stock $stock)
     {
-
         $stock->fill($request->all())->save();
-
         $user = Auth::user();
-        $userId = Auth::user()->id;
-
         $playlists = $user->stocks->sortByDesc('created_at');
 
-        $stockFolders = $user->stock_folders->all();
-
-        $stockIds = collect([]);
-
-        $stockFolderIds = collect([]);
-        $stockNames = collect([]);
-
-        foreach ($playlists as $playlist) {
-            $stockId = $playlist->stocks_id->where('user_id', $userId)->pluck('id');
-            $stockIds->push($stockId);
-
-            $stockFolderId = $playlist->stocks_id->where('user_id', $userId)->pluck('stock_folder_id');
-            $stockFolderIds->push($stockFolderId);
-
-            $stockName = $user->stock_folders->where('id', $stockFolderId[0])->pluck('name');;
-            $stockNames->push($stockName);
-        }
-
-        $stockFolders = $user->stock_folders->all();
+        $getStockDates = StockServices::getStockDates($playlists, $user);
+        $stockFolders = $getStockDates[0];
+        $stockIds = $getStockDates[1];
+        $stockFolderIds = $getStockDates[2];
+        $stockNames = $getStockDates[3];
 
         return view('users.all_stocks', [
-        'user' => $user,
-        'playlists' => $playlists,
-        'stockFolders' => $stockFolders,
-        'stockIds' => $stockIds,
-        'stockFolderIds' => $stockFolderIds,
-        'stockNames' => $stockNames,
+          'user' => $user,
+          'playlists' => $playlists,
+          'stockFolders' => $stockFolders,
+          'stockIds' => $stockIds,
+          'stockFolderIds' => $stockFolderIds,
+          'stockNames' => $stockNames,
       ]);
     }
 }
