@@ -15,7 +15,7 @@ class PlaylistController extends Controller
 
     public function index()
     {
-        $playlists = playlist::withCount('stocks')->orderBy('stocks_count', 'desc')->paginate(5);
+        $playlists = playlist::withCount('stocks')->orderBy('stocks_count', 'desc')->take(5)->get();
         $allTagNames = PlaylistServices::getAllTags();
 
         return view('playlists.index', [
