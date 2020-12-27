@@ -92,7 +92,7 @@
         </p>
         <a class="text-muted" href="{{ route('categories.show', ['title' => $playlist->category->title]) }}" class="card-title">
           {{ $playlist->category->title ?? ''}}
-        <a/>
+        </a>
       </div>
     @endif
 
