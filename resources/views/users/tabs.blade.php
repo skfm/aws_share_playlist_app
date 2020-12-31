@@ -2,7 +2,7 @@
   <li class="nav-item">
     <a class="nav-link {{ $hasPlaylists ? 'active' : '' }}"
        href="{{ route('users.show', ['name' => $user->name]) }}">
-      記事
+      投稿動画
     </a>
   </li>
   <li class="nav-item">

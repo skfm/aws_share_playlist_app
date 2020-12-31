@@ -18,7 +18,7 @@
              href="{{ route('users.all_playlists', [
               'name' => $user->name,
           ]) }}">
-        プレイリスト一覧
+        投稿動画一覧
       </a>
     </div>
   </div>
