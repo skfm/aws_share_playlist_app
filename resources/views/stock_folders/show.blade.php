@@ -7,14 +7,7 @@
   <div class="container">
     @include('users.user')
 
-    <div class="folderLink-wrap d-flex flex-row mt-3">
-      <a href="{{ route('stock_folders.create') }}">
-        フォルダを作成する
-      </a>
-      <a href="{{ route('stock_folders.index') }}">
-        フォルダ一覧
-      </a>
-    </div>
+    @include('stock_folders.nav')
 
     <div class="card mt-3">
       <div class="card-body d-flex align-items-center justify-content-between">
