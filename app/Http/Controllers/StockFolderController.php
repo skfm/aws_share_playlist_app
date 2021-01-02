@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Stock;
 use App\StockFolder;
 use App\Http\Requests\StockFolderRequest;
 use Illuminate\Http\Request;
@@ -65,6 +66,10 @@ class StockFolderController extends Controller
 
     public function destroy(StockFolder $stockFolder)
     {
+        $stocks = $stockFolder->stocks->all();
+        foreach ($stocks as $stock) {
+            $stock->update(['stock_folder_id' => null]);
+        }
         $stockFolder->delete();
         return redirect()->route('stock_folders.index');
     }
