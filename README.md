@@ -42,7 +42,7 @@
 
 ### プレイリスト投稿機能
 
-![記事投稿](https://user-images.githubusercontent.com/44170627/99727488-6257a100-2afb-11eb-8b84-4d44f6160a05.png)
+![記事投稿](https://user-images.githubusercontent.com/44170627/103450905-6680fc00-4d00-11eb-9dbb-a0b69507a163.png)
 
 ヘッダー部分の「投稿する」からYouTubeのプレイリストを投稿します。
 投稿プレイリストにはタグを5つまで選択できます。
@@ -67,7 +67,7 @@
 
 ### ストック機能とストックしたプレイリストのフォルダ分け機能
 
-![ストックフォルダー詳細](https://user-images.githubusercontent.com/44170627/99730139-4950ef00-2aff-11eb-980a-44cd06d7069a.png)
+![ストックフォルダー詳細](https://user-images.githubusercontent.com/44170627/103450904-5ec15780-4d00-11eb-9d48-ff116753831b.png)
 
 投稿されているプレイリスト内のアイコン(上記画像の赤枠部分)を
 クリックすることでプレイリストの保存が可能です。
