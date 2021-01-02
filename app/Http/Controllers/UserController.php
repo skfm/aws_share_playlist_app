@@ -87,7 +87,7 @@ class UserController extends Controller
         $user = User::where('name', $name)->first()
         ->load(['stocks.user', 'stocks.stocks', 'stocks.tags']);
 
-        $playlists = PlaylistServices::getPlaylistsOfUser($user,3);
+        $playlists = $user->stocks->sortByDesc('created_at')->take(3);
 
         return view('users.stocks', [
             'user' => $user,

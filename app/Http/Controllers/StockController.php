@@ -10,7 +10,7 @@ use App\Services\StockServices;
 
 class StockController extends Controller
 {
-  public function edit(Stock $stock)
+    public function edit(Stock $stock)
     {
         $stockFolders = Auth::user()->stock_folders;
 
